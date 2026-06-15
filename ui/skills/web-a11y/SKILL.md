@@ -1,14 +1,14 @@
 ---
 name: web-a11y
-description: Доступность веб-интерфейсов (WCAG) — контраст, клавиатура, фокус, ARIA, семантика. Применять при создании UI и при ревью интерфейса.
+description: Web interface accessibility (WCAG) — contrast, keyboard, focus, ARIA, semantics. Apply when building UI and when reviewing the interface.
 ---
 
-# Доступность веба (WCAG)
+# Web Accessibility (WCAG)
 
-- **Контраст** текста/контролов к фону ≥ 4.5:1 (крупный текст ≥ 3:1).
-- **Клавиатура.** Всё интерактивное доступно с клавиатуры; логичный порядок табуляции; видимый фокус-стиль (не убирать `outline` без замены).
-- **Семантика.** Нативные элементы (`button`, `a`, `label`) вместо `div` с onClick; ARIA — только когда нативного не хватает, и корректно.
-- **Икон-кнопки** — `aria-label`. Изображения — `alt` (или пустой `alt` для декоративных).
-- **Формы** — связанные `label`, сообщения об ошибках доступны скринридеру (`aria-describedby`, `aria-invalid`).
-- **Движение** — уважать `prefers-reduced-motion`.
-- **Проверка:** axe/Lighthouse в CI; ручной прогон с клавиатуры и скринридером по ключевым флоу.
+- **Contrast** of text/controls against the background ≥ 4.5:1 (large text ≥ 3:1).
+- **Keyboard.** Everything interactive is reachable from the keyboard; logical tab order; a visible focus style (don't remove `outline` without a replacement).
+- **Semantics.** Native elements (`button`, `a`, `label`) instead of a `div` with onClick; ARIA only when native isn't enough, and used correctly.
+- **Icon buttons** — `aria-label`. Images — `alt` (or an empty `alt` for decorative ones).
+- **Forms** — associated `label`, error messages available to screen readers (`aria-describedby`, `aria-invalid`).
+- **Motion** — respect `prefers-reduced-motion`.
+- **Verification:** axe/Lighthouse in CI; a manual run with keyboard and screen reader over the key flows.

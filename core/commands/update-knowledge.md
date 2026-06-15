@@ -1,34 +1,34 @@
 ---
-description: Сверить knowledge-паки с официальными доками, пометить устаревшие и обновить правила под новые версии стека.
-argument-hint: [id пака | all] (по умолчанию all)
+description: Reconcile knowledge packs with the official docs, flag stale ones, and update the rules for new stack versions.
+argument-hint: [pack id | all] (default all)
 ---
 
-# /update-knowledge — обновить компоненты библиотеки
+# /update-knowledge — update the library's components
 
-Стеки протухают: выходят новые версии, меняются рекомендации. Эта команда
-держит паки актуальными. Обновляет ТОЛЬКО knowledge-паки; код плагинов
-(агенты/скилы/команды) обновляется штатно через `/plugin update`.
+Stacks go stale: new versions come out, recommendations change. This command
+keeps the packs current. It updates ONLY knowledge packs; plugin code
+(agents/skills/commands) is updated normally via `/plugin update`.
 
-## Шаги
+## Steps
 
-1. **Определи объём** из `$ARGUMENTS`: конкретный `id` или `all`
-   (тогда пройди по всем `status: ready` в `registry.json`).
-2. **Политика устаревания.** Помечай `status: "stale"` пак, если выполнено любое:
-   - `last_verified` старше 90 дней;
-   - вышла новая мажорная/минорная версия таргета (проверь по `sources`);
-   - в `sources.md` указанная версия раздела разошлась с текущей докой.
-3. **Сверка.** Для каждого пака открой ссылки из `sources.md`, сравни ключевые
-   разделы. Нашёл расхождение → обнови соответствующее правило в `rules.md`,
-   допиши/поправь строку в `sources.md` с новой версией.
-4. **Версионирование.** Любое изменение `rules.md` → подними `version` пака
-   в `registry.json` (semver: правка правил = minor, переписывание = major),
-   проставь `last_verified` = сегодня, верни `status: "ready"`.
-5. **Отчёт.** Таблица: пак · было→стало (версия) · что изменилось · что без
-   изменений. Ничего не менял без подтверждения докой — расхождение без
-   источника не правь, вынеси в отчёт как «требует ручной проверки».
+1. **Determine the scope** from `$ARGUMENTS`: a specific `id` or `all`
+   (then go through all `status: ready` in `registry.json`).
+2. **Staleness policy.** Mark a pack `status: "stale"` if any of these hold:
+   - `last_verified` is older than 90 days;
+   - a new major/minor version of the target has been released (check via `sources`);
+   - the section version stated in `sources.md` has diverged from the current docs.
+3. **Reconciliation.** For each pack, open the links from `sources.md`, compare the key
+   sections. Found a divergence → update the corresponding rule in `rules.md`,
+   add/fix the line in `sources.md` with the new version.
+4. **Versioning.** Any change to `rules.md` → bump the pack's `version`
+   in `registry.json` (semver: a rule edit = minor, a rewrite = major),
+   set `last_verified` = today, return `status: "ready"`.
+5. **Report.** Table: pack · was→now (version) · what changed · what's
+   unchanged. Don't change anything without confirmation from the docs — a divergence without
+   a source: don't fix it, put it in the report as "requires manual checking".
 
-## Принципы
+## Principles
 
-- Обновление — по доказательству из доки, не по догадке.
-- Не трогай паки `status: planned` (их ещё не существует).
-- Конфликты (`conflictsWith`) перепроверяй: новая версия могла снять/добавить.
+- An update — based on evidence from the docs, not a guess.
+- Don't touch `status: planned` packs (they don't exist yet).
+- Re-check conflicts (`conflictsWith`): a new version may have removed/added them.

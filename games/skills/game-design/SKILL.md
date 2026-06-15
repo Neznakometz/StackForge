@@ -1,20 +1,20 @@
 ---
 name: game-design
-description: Дизайн игры — GDD, игровые системы, баланс, петли вовлечения. Применять при проектировании механик, систем и при создании/правке game design document.
+description: Game design — GDD, game systems, balance, engagement loops. Apply when designing mechanics and systems and when creating/editing a game design document.
 ---
 
-# Гейм-дизайн
+# Game design
 
 ## GDD (game design document)
-На каждую систему: цель, правила (точно, формулами), входы/выходы, состояния, экономика/прогрессия, edge cases. Параметры баланса — **данными** (конфиг), не магическими числами в коде.
+For each system: goal, rules (precise, with formulas), inputs/outputs, states, economy/progression, edge cases. Balance parameters — as **data** (config), not magic numbers in code.
 
-## Рамки анализа
-- **MDA** — Mechanics → Dynamics → Aesthetics: что игрок делает → что из этого возникает → какое переживание.
-- **Петля вовлечения** — challenge/skill баланс (flow); прогрессия не затягивающая dark-pattern'ами.
-- **Аудитория** — под кого (типы игроков), что валидируем.
+## Analysis frameworks
+- **MDA** — Mechanics → Dynamics → Aesthetics: what the player does → what emerges from it → what experience.
+- **Engagement loop** — challenge/skill balance (flow); progression that does not hook with dark patterns.
+- **Audience** — who it is for (player types), what we are validating.
 
-## Правила
-- **Данные, не код.** Баланс, уровни, награды, экономика — конфиг/данные; правит дизайнер без релиза.
-- **Системы изолированы.** Гейплей не лезет в UI напрямую; общие правила — через интерфейсы.
-- **Проверяемость.** Каждое правило баланса — с критерием («при X игрок получает Y»), чтобы QA/`balance-check` могли проверить.
-- Скоуп заморожен: новые механики → бэклог, не в текущую фазу.
+## Rules
+- **Data, not code.** Balance, levels, rewards, economy — config/data; the designer edits it without a release.
+- **Systems are isolated.** Gameplay does not touch the UI directly; shared rules — through interfaces.
+- **Verifiability.** Every balance rule comes with a criterion ("when X the player gets Y") so that QA/`balance-check` can verify it.
+- Scope is frozen: new mechanics → backlog, not into the current phase.

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// Stop: прогоняет `dart analyze` (включает riverpod_lint) и сообщает проблемы.
-// Грациозно: нет dart / не Flutter-проект → тихий выход. Всегда exit 0.
+// Stop: runs `dart analyze` (includes riverpod_lint) and reports problems.
+// Gracefully: no dart / not a Flutter project → quiet exit. Always exit 0.
 "use strict";
 const { execSync } = require("child_process");
 const fs = require("fs");
 
 try {
-  if (!fs.existsSync("pubspec.yaml")) process.exit(0); // не Flutter/Dart проект
+  if (!fs.existsSync("pubspec.yaml")) process.exit(0); // not a Flutter/Dart project
   try {
     execSync("dart --version", { stdio: "ignore" });
   } catch {
@@ -27,10 +27,10 @@ try {
     .slice(0, 15);
   if (issues.length) {
     process.stdout.write(
-      "[dart analyze — проверь перед завершением]\n" + issues.join("\n") + "\n"
+      "[dart analyze — check before finishing]\n" + issues.join("\n") + "\n"
     );
   }
 } catch {
-  // не мешаем
+  // don't get in the way
 }
 process.exit(0);

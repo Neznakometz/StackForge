@@ -1,33 +1,33 @@
 ---
 name: memory
-description: Память агента между сессиями — управление контекстом (L1) и чекпоинты (L2). Применять при заполнении контекста, переходе в новый чат и закрытии сессии.
+description: The agent's memory between sessions — context management (L1) and checkpoints (L2). Apply when the context fills up, when moving to a new chat, and when closing a session.
 ---
 
-# Память — L1 (контекст) + L2 (чекпоинты)
+# Memory — L1 (context) + L2 (checkpoints)
 
-L3 (durable/SQLite) — опционально, включается по выбору в `/init`.
+L3 (durable/SQLite) and the rolling log (Layer 0.5) are in a separate set, `storage` (`/plugin install storage@stackforge`), installed when persistent memory is needed. Here — L1+L2.
 
-## L1 — активный контекст
+## L1 — active context
 
-- Следи за заполнением контекстного окна. При **40%** — предложи `/compact`. Никогда не доводи до авто-compact на 95% (качество деградирует).
-- `/compact`: краткое саммари прогресса (задача, сделано, осталось) → продолжить.
-- `/convolife`: оцени % заполнения контекста, сообщи остаток.
-- `/clear`: полная очистка — только когда тема закрыта полностью.
+- Watch the fill level of the context window. At **40%** — propose `/compact`. Never let it reach auto-compact at 95% (quality degrades).
+- `/compact`: a brief summary of progress (task, done, remaining) → continue.
+- `/convolife`: estimate the % of context filled, report what's left.
+- `/clear`: a full wipe — only when the topic is fully closed.
 
-## L2 — чекпоинты
+## L2 — checkpoints
 
-- `/checkpoint` — перед каждым закрытием чата. Создаёт `Sessions/checkpoints/YYYY-MM-DD-checkpoint.md`:
-  `## Что сделано` (конкретика: пути, числа) · `## Ключевые решения` (почему так) · `## Не завершено` (следующий шаг).
-- **Авто-checkpoint:** задача на 3+ файла или 10+ шагов → каждые ровно 10 tool-calls пиши прогресс в `Sessions/tmp/progress-<slug>.md`; при завершении удали.
-- `/newchat`: checkpoint → «начни новую сессию».
+- `/checkpoint` — before every chat close. Creates `Sessions/checkpoints/YYYY-MM-DD-checkpoint.md`:
+  `## What was done` (specifics: paths, numbers) · `## Key decisions` (why this way) · `## Not finished` (the next step).
+- **Auto-checkpoint:** a task spanning 3+ files or 10+ steps → write progress to `Sessions/tmp/progress-<slug>.md` every exactly 10 tool calls; delete it on completion.
+- `/newchat`: checkpoint → "start a new session".
 
-## Порядок инжекции в новую сессию (сверху вниз)
+## Injection order for a new session (top to bottom)
 
-`[Память]` (ключевые факты) → `[Предыдущая сессия]` (последний checkpoint) → сообщение пользователя.
+`[Memory]` (key facts) → `[Previous session]` (the last checkpoint) → the user's message.
 
-## Правила
+## Rules
 
-- Временное (детали задачи) → только L2, не в долгую память.
-- Постоянное (паттерны, пути, архитектура) → L3, если включён; иначе в `agent-memory.md`.
-- Заменяй устаревшие записи, не накапливай противоречия.
-- PROGRESS.md ведёт оркестратор (task-loop), checkpoint — детальнее, для восстановления.
+- Temporary (task details) → only L2, not into long-term memory.
+- Permanent (patterns, paths, architecture) → L3, if enabled; otherwise into `agent-memory.md`.
+- Replace stale entries, don't accumulate contradictions.
+- PROGRESS.md is maintained by the orchestrator (task-loop), the checkpoint — more detailed, for recovery.

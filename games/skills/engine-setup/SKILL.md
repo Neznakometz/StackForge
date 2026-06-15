@@ -1,25 +1,25 @@
 ---
 name: engine-setup
-description: Выбор и настройка игрового движка — Godot 4, Unity, Unreal 5. Применять при старте игрового проекта и при настройке структуры под движок.
+description: Choosing and setting up a game engine — Godot 4, Unity, Unreal 5. Apply when starting a game project and when setting up the structure for the engine.
 ---
 
-# Настройка движка
+# Engine setup
 
-Выбери ОДИН движок под проект; активируй соответствующие конвенции и path-scoped правила.
+Choose ONE engine for the project; activate the corresponding conventions and path-scoped rules.
 
-| Движок | Когда | Специалисты |
-|--------|-------|-------------|
-| **Godot 4** | 2D/3D инди, открытый стек, лёгкий | GDScript, шейдеры, GDExtension |
-| **Unity** | кроссплатформа, большой ассет-стор, мобайл | DOTS/ECS, шейдеры/VFX, Addressables, UI Toolkit |
-| **Unreal 5** | high-fidelity 3D, AAA-графика | GAS, Blueprints, репликация, UMG/CommonUI |
+| Engine | When | Specialists |
+|--------|------|-------------|
+| **Godot 4** | 2D/3D indie, open stack, lightweight | GDScript, shaders, GDExtension |
+| **Unity** | cross-platform, large asset store, mobile | DOTS/ECS, shaders/VFX, Addressables, UI Toolkit |
+| **Unreal 5** | high-fidelity 3D, AAA graphics | GAS, Blueprints, replication, UMG/CommonUI |
 
-## Path-scoped правила (по слоям)
-- `src/gameplay/**` → данные-driven значения, delta-time, без ссылок на UI.
-- `src/core/**` → нет аллокаций в hot path, потокобезопасность, стабильное API.
-- `src/ui/**` → не владеет игровым состоянием, локализуемо, доступно.
-- `prototypes/**` → ослабленные стандарты, README + гипотеза обязательны.
+## Path-scoped rules (by layer)
+- `src/gameplay/**` → data-driven values, delta-time, no references to the UI.
+- `src/core/**` → no allocations in the hot path, thread safety, stable API.
+- `src/ui/**` → does not own game state, localizable, accessible.
+- `prototypes/**` → relaxed standards, README + hypothesis required.
 
-## Правила
-- Тяжёлая логика — data-driven и тестируема; покадровый `Update` не раздувать.
-- Структура изолирует движок: бизнес-логика отделена от движкового API, насколько возможно.
-- Один движок на проект; смена — через ADR.
+## Rules
+- Heavy logic — data-driven and testable; do not bloat the per-frame `Update`.
+- The structure isolates the engine: business logic is separated from the engine API as much as possible.
+- One engine per project; switching — through an ADR.

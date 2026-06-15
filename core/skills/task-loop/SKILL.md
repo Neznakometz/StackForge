@@ -1,17 +1,17 @@
 ---
 name: task-loop
-description: Главный рабочий цикл разработки — subagent-driven development. Применять для ЛЮБОЙ задачи из плана реализации.
+description: The main development work loop — subagent-driven development. Apply for ANY task from the implementation plan.
 ---
 
-# Цикл выполнения задачи (subagent-driven)
+# Task execution loop (subagent-driven)
 
-Оркестратор (основная сессия) НЕ пишет код сам — он диспетчеризует сабагентов и держит контекст маленьким.
+The orchestrator (main session) does NOT write code itself — it dispatches subagents and keeps the context small.
 
-1. **Выбор задачи.** Открой `PROGRESS.md` (короткий!), возьми следующую невыполненную задачу текущей фазы из плана реализации. Если задача крупнее ~30 мин — разбей на подзадачи 5–15 мин с точными путями файлов, веди список в PROGRESS.md.
-2. **Диспетчеризация.** Запусти агента `implementer` со СВЕЖИМ контекстом: полный текст подзадачи + точные ссылки на секции документов. Не пересказывай ему историю.
-3. **Ревью:** `spec-reviewer` (соответствие задаче) → APPROVE → `code-reviewer` (качество); для UI-задач — дополнительно `design-reviewer`. Затем **обязательное кросс-модельное ревью** (внешний «второй мозг», скил `cross-model-review`). REJECT любого ревьюера → верни implementer'у ТОЛЬКО список замечаний (не весь диалог); находки внешних моделей предварительно отфильтруй (ложноположительные отбрось). Максимум 2 цикла исправлений, дальше — эскалация пользователю.
-4. **Верификация.** `test-runner`: тесты модуля + lint + typecheck. Полный прогон репо — только в конце фазы.
-5. **Фиксация (память).** Коммит сделан implementer'ом. Обнови PROGRESS.md (1 строка: задача, статус, коммит). Нетривиальное решение → ADR в `docs/decisions/`. Одно и то же ревью-замечание ≥2 раз → предложи пользователю добавить правило в CLAUDE.md/пак (сам не редактируй). Спеку и план не редактируй.
-6. **Конец фазы:** `/phase-check` — полный прогон тестов, `security-auditor` на diff фазы, **adversarial-review всей фазы** (cross-model-review по diff фазы), сверка критериев приёмки по чек-листу, СТОП — показать пользователю; следующую фазу без подтверждения не начинать.
+1. **Task selection.** Open `PROGRESS.md` (keep it short!), take the next unfinished task of the current phase from the implementation plan. If a task is larger than ~30 min — break it into 5–15 min subtasks with exact file paths, keep the list in PROGRESS.md.
+2. **Dispatch.** Launch the `implementer` agent with a FRESH context: the full subtask text + exact references to document sections. Don't retell it the history.
+3. **Review:** `spec-reviewer` (conformance to the task) → APPROVE → `code-reviewer` (quality); for UI tasks — additionally `design-reviewer`. Then a **mandatory cross-model review** (an external "second brain", the `cross-model-review` skill). A REJECT from any reviewer → return to the implementer ONLY the list of findings (not the whole dialog); pre-filter the external models' findings (discard false positives). Maximum 2 fix cycles, then escalate to the user.
+4. **Verification.** `test-runner`: module tests + lint + typecheck. A full repo run — only at the end of the phase.
+5. **Recording (memory).** The commit is made by the implementer. Update PROGRESS.md (1 line: task, status, commit). A non-trivial decision → ADR in `docs/decisions/`. The same review finding ≥2 times → propose to the user adding a rule to CLAUDE.md/a pack (don't edit it yourself). Don't edit the spec and the plan.
+6. **End of phase:** `/phase-check` — full test run, `security-auditor` on the phase diff, **adversarial review of the whole phase** (cross-model-review over the phase diff), check the acceptance criteria against the checklist, STOP — show the user; don't start the next phase without confirmation.
 
-Антипаттерны: несколько задач одним вызовом implementer; чинить ревью-замечания в контексте оркестратора; пропускать spec-review или кросс-ревью «потому что задача простая».
+Antipatterns: several tasks in a single implementer call; fixing review findings in the orchestrator's context; skipping spec-review or cross-review "because the task is simple".

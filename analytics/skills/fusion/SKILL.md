@@ -1,25 +1,25 @@
 ---
 name: fusion
-description: Мультимодельная генерация — прогнать задачу через несколько моделей (Claude + Codex/ChatGPT + Gemini) и синтезировать лучший ответ. Применять для сложных нетехнических/исследовательских задач, где ценны разные точки зрения.
+description: Multi-model generation — run a task through several models (Claude + Codex/ChatGPT + Gemini) and synthesize the best answer. Apply to complex non-technical/research tasks where different points of view are valuable.
 ---
 
-# Fusion — мультимодельная генерация
+# Fusion — multi-model generation
 
-Прогнать один запрос через несколько моделей параллельно, проанализировать сильные стороны каждого ответа и синтезировать лучший. Для кросс-ревью КОДА — отдельный core-скил `cross-model-review` (там асимметрия Claude-пишет/внешний-атакует); здесь — генерация и синтез.
+Run a single query through several models in parallel, analyze the strengths of each answer, and synthesize the best one. For cross-review of CODE — the separate core skill `cross-model-review` (it has the Claude-writes/external-attacks asymmetry); here it's generation and synthesis.
 
-## Два режима
+## Two modes
 
-**lite (без зависимостей):** fan-out на субагентов Claude с разными моделями (opus/sonnet/haiku) и/или разными ракурсами (оптимист/скептик/прагматик). Дёшево, всегда доступно; разнообразие по размеру/ракурсу, не по вендору.
+**lite (no dependencies):** fan-out to Claude subagents with different models (opus/sonnet/haiku) and/or different angles (optimist/skeptic/pragmatist). Cheap, always available; diversity by size/angle, not by vendor.
 
-**full (кросс-вендор):** запросы к Codex и Gemini через их CLI (`codex`, `gemini`) + Claude, параллельно. Настоящая модельная диверсификация. Требует установленных CLI с активной авторизацией.
+**full (cross-vendor):** queries to Codex and Gemini via their CLIs (`codex`, `gemini`) + Claude, in parallel. Real model diversification. Requires the CLIs installed with active authorization.
 
-## Процесс
+## Process
 
-1. Сформулируй единый промпт.
-2. Fan-out: 3–5 генераций (модели/ракурсы). Не больше — после 3–4 убывающая отдача.
-3. **Синтез (Claude как судья):** выдели сильные/слабые места каждого ответа, собери лучший комбинированный; противоречия между моделями — выяви явно, не усредняй вслепую.
-4. Верни синтез + (по запросу) короткую таблицу «что взято от какой модели».
+1. Formulate a single prompt.
+2. Fan-out: 3–5 generations (models/angles). No more — after 3–4 there are diminishing returns.
+3. **Synthesis (Claude as judge):** identify the strengths/weaknesses of each answer, assemble the best combined one; contradictions between models — surface them explicitly, don't average blindly.
+4. Return the synthesis + (on request) a short table of "what was taken from which model".
 
-## Когда применять
+## When to apply
 
-Стратегия/анализ/ресёрч/креатив, где разные точки зрения ценны. НЕ для рутины — fusion дорогой (N вызовов) и медленный. Качество — от хорошего судьи, не от числа моделей.
+Strategy/analysis/research/creative, where different points of view are valuable. NOT for routine — fusion is expensive (N calls) and slow. Quality comes from a good judge, not from the number of models.

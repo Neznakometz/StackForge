@@ -1,14 +1,14 @@
 ---
 name: background-jobs
-description: Фоновые задачи и очереди для SaaS — воркеры, ретраи, идемпотентность, dead-letter. Применять при тяжёлой/асинхронной работе (обработка медиа, внешние API, рассылки, отчёты).
+description: Background jobs and queues for SaaS — workers, retries, idempotency, dead-letter. Apply for heavy/async work (media processing, external APIs, mailings, reports).
 ---
 
-# Фоновые задачи
+# Background Jobs
 
-- **Тяжёлое — только в воркерах.** В API-обработчиках нет долгих/тяжёлых вызовов (медиа, LLM/ASR, генерация отчётов, массовые рассылки). API кладёт задачу в очередь и отвечает быстро.
-- **Идемпотентность.** Джоб может выполниться повторно (ретрай, дубль доставки) — пиши так, чтобы повтор не ломал данные (upsert, проверка «уже сделано»).
-- **Ретраи с backoff** + предел попыток → dead-letter/ошибочная очередь, алерт. Не ретраить бесконечно.
-- **Таймауты** на внешние вызовы; джоб не висит вечно.
-- **Без секретов/PII в логах** джоба. Прогресс длинных задач — чекпоинтами, чтобы переживать рестарт.
-- **Внешние провайдеры — через интерфейсы** + mock-реализация (как в core-правилах): бизнес-код воркера не импортирует SDK напрямую.
-- **Наблюдаемость:** метрики очереди (глубина, latency, fail rate) в Grafana/Sentry.
+- **Heavy work only in workers.** No long/heavy calls in API handlers (media, LLM/ASR, report generation, bulk mailings). The API enqueues a job and responds quickly.
+- **Idempotency.** A job may run again (retry, duplicate delivery) — write it so that a repeat doesn't corrupt data (upsert, an "already done" check).
+- **Retries with backoff** + an attempt limit → dead-letter/failure queue, alert. Don't retry forever.
+- **Timeouts** on external calls; a job doesn't hang forever.
+- **No secrets/PII in job logs.** Progress of long jobs — via checkpoints, so it survives restarts.
+- **External providers — through interfaces** + a mock implementation (as in the core rules): the worker's business code does not import the SDK directly.
+- **Observability:** queue metrics (depth, latency, fail rate) in Grafana/Sentry.

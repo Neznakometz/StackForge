@@ -1,19 +1,19 @@
-# Конституция проекта: <название>
+# Project Constitution: <name>
 
-Принципы, которым подчинены ВСЕ решения. Читается каждую сессию. Короткая.
+Principles that govern ALL decisions. Read every session. Keep it short.
 
-## Принципы
-1. **Качество кода** — <что значит для проекта>.
-2. **Тестирование** — <стратегия: TDD, покрытие критичного>.
-3. **UX-консистентность** — <токены, состояния, доступность>.
-4. **Перфоманс** — <бюджеты, что измеряем>.
+## Principles
+1. **Code quality** — <what it means for the project>.
+2. **Testing** — <strategy: TDD, coverage of the critical parts>.
+3. **UX consistency** — <tokens, states, accessibility>.
+4. **Performance** — <budgets, what we measure>.
 
-## Нерушимые правила (нарушение = блокер)
-- <правило 1 — напр. секреты только в env>
-- <правило 2 — напр. мультитенантный скоуп каждого запроса>
+## Inviolable rules (a violation = a blocker)
+- <rule 1 — e.g. secrets only in env>
+- <rule 2 — e.g. multi-tenant scope on every query>
 - <...>
 
-## Иерархия источников истины (при конфликте — старший побеждает)
-1. <напр. дизайн/Figma> · 2. <продуктовые доки> · 3. <существующий код> · 4. <vision>
+## Hierarchy of sources of truth (on conflict — the higher one wins)
+1. <e.g. design/Figma> · 2. <product docs> · 3. <existing code> · 4. <vision>
 
-Конфликт агент не решает сам → `⚠️ КОНФЛИКТ` + эскалация владельцу.
+The agent does not resolve a conflict on its own → `⚠️ CONFLICT` + escalation to the owner.

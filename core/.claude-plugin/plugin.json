@@ -1,7 +1,7 @@
 {
   "name": "core",
   "version": "0.1.0",
-  "description": "Ядро Claud Framework. Subagent-driven процесс с обязательным кросс-модельным ревью (Codex/Gemini CLI), трёхслойная память, экономия токенов и стек-осознанный /init, собирающий CLAUDE.md под выбранный стек из knowledge-паков.",
+  "description": "StackForge core. Subagent-driven process with mandatory cross-model review (Codex/Gemini CLI), three-layer memory, token economy, and a stack-aware /init that assembles CLAUDE.md for the chosen stack from knowledge packs.",
   "author": {
     "name": "Aleksandr"
   }

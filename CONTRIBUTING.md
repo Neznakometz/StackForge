@@ -1,46 +1,73 @@
-# Contributing — Claud Framework
+# Contributing — StackForge
 
-Фреймворк расширяется тремя способами: новый **стек** (knowledge-пак), новый
-**домен** (плагин), правка **ядра**. Ниже — как делать каждое чисто.
+The framework is extended in three ways: a new **stack** (knowledge pack), a new
+**domain** (plugin), an edit to the **core**. Below — how to do each one cleanly.
 
-## Добавить стек (knowledge-пак)
+## Add a stack (knowledge pack)
 
-1. В Claude Code выполни `/add-stack <технология>` — команда заземлит правила на
-   официальные доки, создаст `core/knowledge/<id>/` и зарегистрирует пак.
-2. Либо вручную: скопируй `core/knowledge/_template/` → `core/knowledge/<id>/`,
-   заполни `rules.md` + `sources.md` (правила только из официальных доков),
-   добавь объект в `core/knowledge/registry.json` (`status: ready`).
-3. Укажи `conflictsWith` для несовместимых по мнению паков (напр. альтернативный
-   стейт-менеджмент/ORM), иначе `/init` склеит противоречия.
+1. In Claude Code, run `/add-stack <technology>` — the command grounds the rules in
+   the official docs, creates `core/knowledge/<id>/`, and registers the pack.
+2. Or manually: copy `core/knowledge/_template/` → `core/knowledge/<id>/`,
+   fill in `rules.md` + `sources.md` (rules only from official docs),
+   add an object to `core/knowledge/registry.json` (`status: ready`).
+3. Specify `conflictsWith` for packs considered incompatible (e.g. an alternative
+   state management/ORM), otherwise `/init` will glue contradictions together.
 
-## Добавить домен (плагин)
+## Add a domain (plugin)
 
-1. Создай папку `<domen>/` с `.claude-plugin/plugin.json`, `skills/`, `agents/`,
-   `commands/`, `hooks/` по образцу `core/`.
-2. Зарегистрируй плагин в корневом `.claude-plugin/marketplace.json` (массив
-   `plugins`): `name`, `description`, `source`, `category`.
-3. Домен садится поверх ядра — не дублируй процесс/память/ревью, ссылайся на них.
+1. Create a `<domain>/` folder with `.claude-plugin/plugin.json`, `skills/`, `agents/`,
+   `commands/`, `hooks/`, following the example of `core/`.
+2. Register the plugin in the root `.claude-plugin/marketplace.json` (the
+   `plugins` array): `name`, `description`, `source`, `category`.
+3. A domain sits on top of the core — don't duplicate process/memory/review, reference them.
 
-## Править ядро
+## Edit the core
 
-- Держи `core` тонким: процесс, ревью, память, экономия токенов, `/init`.
-  Доменное и стек-специфичное — в плагины/паки, не в ядро.
-- Любое повторяющееся ревью-замечание → правило в соответствующем паке, а не в код.
+- Keep `core` thin: process, review, memory, token economy, `/init`.
+  Domain- and stack-specific things — in plugins/packs, not in the core.
+- Any recurring review comment → a rule in the corresponding pack, not in the code.
 
-## Обновление компонентов
+## Updating components
 
-- Код плагинов (агенты/скилы/команды) — у пользователя через `/plugin update`.
-- Знания (паки) — через `/update-knowledge [id|all]`: сверка с доками, semver,
-  `last_verified`. Политика устаревания — 90 дней или новая версия таргета.
+- Plugin code (agents/skills/commands) — to the user via `/plugin update`.
+- Knowledge (packs) — via `/update-knowledge [id|all]`: verification against the docs, semver,
+  `last_verified`. The staleness policy is 90 days or a new version of the target.
 
-## Качество
+## Quality
 
-- Перед PR прогони smoke-тесты hooks (если меняешь hooks).
-- Правила — операциональные и проверяемые, не теория.
-- Версионируй: правки правил = minor, переписывание = major (см. CHANGELOG).
+- **Before committing:** `bash scripts/validate.sh` — green (JSON, skill/agent frontmatter, plugin registration, pack integrity, hook compilation). The same runs in CI (`.github/workflows/validate.yml`) on push.
+- Rules — operational and verifiable, not theory.
+- Version it: edits to rules = minor, a rewrite = major (see CHANGELOG). Agent authoring rules — in the root `CLAUDE.md`.
 
-## Лицензии и атрибуция
+## Framework support in VSCode
 
-Проект под MIT. Если переносишь содержимое из сторонних наборов — сохраняй их
-лицензию и атрибуцию; не тащи контент под копилефт-лицензиями (напр. AGPL) в
-MIT-пакеты. Указывай источник в `sources.md` пака.
+`.vscode/` cannot be created automatically (it's protected) — create it manually. Recommendations:
+
+`.vscode/extensions.json`:
+```json
+{
+  "recommendations": [
+    "anthropic.claude-code", "redhat.vscode-yaml",
+    "davidanson.vscode-markdownlint", "timonwong.shellcheck", "esbenp.prettier-vscode"
+  ]
+}
+```
+
+`.vscode/settings.json` (JSON schemas for autocompletion/validation in the editor):
+```json
+{
+  "files.associations": { "*/.claude-plugin/marketplace.json": "jsonc" },
+  "json.schemas": [
+    { "fileMatch": ["**/marketplace.json"], "url": "https://anthropic.com/claude-code/marketplace.schema.json" }
+  ],
+  "editor.formatOnSave": true
+}
+```
+
+Both files are allowed in `.gitignore` (the rest of `.vscode/` is ignored).
+
+## Licenses and attribution
+
+The project is under MIT. If you port content from third-party sets — preserve their
+license and attribution; don't pull content under copyleft licenses (e.g. AGPL) into
+MIT packages. Cite the source in the pack's `sources.md`.

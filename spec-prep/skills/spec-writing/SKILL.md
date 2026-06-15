@@ -1,25 +1,25 @@
 ---
 name: spec-writing
-description: Написание спецификаций проекта из идеи — brainstorm, требования, критерии приёмки. Применять при создании или правке SPECIFICATION/DESIGN_SPEC/IMPLEMENTATION_PLAN и при превращении идеи в спеку.
+description: Writing a project specification from an idea — brainstorm, requirements, acceptance criteria. Apply when creating or editing SPECIFICATION/DESIGN_SPEC/IMPLEMENTATION_PLAN and when turning an idea into a spec.
 ---
 
-# Написание спеки
+# Writing a Spec
 
-## Brainstorm (вытащить спеку из идеи)
-Не прыгай в требования. Сократическими вопросами вытащи: для кого / какую проблему / главный критерий ценности / что НЕ входит. Показывай по чанкам, давай подтверждать. Альтернативы — проговаривай, не навязывай первую.
+## Brainstorm (extract the spec from the idea)
+Don't jump into requirements. With Socratic questions, draw out: for whom / which problem / the main value criterion / what's out of scope. Show it in chunks, let it be confirmed. Talk through alternatives — don't push the first one.
 
-## Принципы
-- **Что и зачем, не как.** Спека описывает поведение и требования, не стек и не реализацию (стек — позже, в плане/`/init`).
-- **Проверяемость.** Каждое требование — измеримо. «при X происходит Y», не «работает корректно».
-- **Анти-скоуп явно.** Что НЕ делаем — отдельным разделом; защищает от расползания.
-- **Конфликты не замазывать.** Противоречие источников/требований → блок `⚠️ КОНФЛИКТ` + рекомендация, эскалация владельцу.
-- **Не изобретать.** Нет данных — вопрос, не догадка.
+## Principles
+- **What and why, not how.** The spec describes behavior and requirements, not the stack or the implementation (the stack comes later, in the plan/`/init`).
+- **Verifiability.** Every requirement is measurable. "when X, Y happens", not "works correctly".
+- **Anti-scope, explicitly.** What we are NOT doing — as a separate section; it guards against scope creep.
+- **Don't paper over conflicts.** A contradiction between sources/requirements → an `⚠️ CONFLICT` block + a recommendation, escalation to the owner.
+- **Don't invent.** No data — ask, don't guess.
 
-## Структура артефактов
-- `SPECIFICATION.md` — продукт/требования (FR-*), сущности, API. Шаблон `templates/specification-template.md`.
-- `DESIGN_SPEC.md` — UI: токены, экраны, состояния, доступность. Шаблон `templates/design-spec-template.md`.
-- `IMPLEMENTATION_PLAN.md` — фазы + задачи + критерии приёмки. Шаблон `templates/implementation-plan-template.md`.
-- `constitution.md` — принципы и нерушимые правила. Шаблон `templates/constitution-template.md`.
+## Artifact structure
+- `SPECIFICATION.md` — product/requirements (FR-*), entities, API. Template `templates/specification-template.md`.
+- `DESIGN_SPEC.md` — UI: tokens, screens, states, accessibility. Template `templates/design-spec-template.md`.
+- `IMPLEMENTATION_PLAN.md` — phases + tasks + acceptance criteria. Template `templates/implementation-plan-template.md`.
+- `constitution.md` — principles and inviolable rules. Template `templates/constitution-template.md`.
 
-## Критерии приёмки (важнейшее)
-Каждая фаза плана закрывается чек-листом проверяемых критериев — это контракт с `/phase-check`. Критерий без способа проверки (команда/тест/ручная инструкция) — не критерий.
+## Acceptance criteria (the most important part)
+Each phase of the plan is closed by a checklist of verifiable criteria — this is the contract with `/phase-check`. A criterion with no way to verify it (command/test/manual instruction) is not a criterion.

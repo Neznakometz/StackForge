@@ -1,37 +1,37 @@
-# Спека модуля: <название>
+# Module spec: <name>
 
-**Статус:** draft / на ревью / утверждена (дата, владелец)
-**Решение Гейта Ф1:** переносим / упрощаем / выкидываем — <что именно выбрасывается при упрощении>
-**Источники:** `audit/behavior/<module>.md`, `design/screens/<...>.md`, <продуктовые доки>
+**Status:** draft / in review / approved (date, owner)
+**Ph1 gate decision:** port / simplify / drop — <what exactly is dropped when simplifying>
+**Sources:** `audit/behavior/<module>.md`, `design/screens/<...>.md`, <product docs>
 
-## 1. Назначение и границы
-Что модуль делает в одном абзаце. Что явно НЕ входит.
+## 1. Purpose and boundaries
+What the module does in one paragraph. What is explicitly OUT of scope.
 
-## 2. Экраны и состояния
-Перечень экранов (ссылки на design/screens/), для каждого — состояния: default / пустое / загрузка / ошибка. Диаграмма переходов, если состояний > 3.
+## 2. Screens and states
+List of screens (links to design/screens/), and for each — states: default / empty / loading / error. A transition diagram if there are > 3 states.
 
-## 3. Поведение и бизнес-правила
-Нумерованные правила, точно и проверяемо. Формулы, тайминги, условия — числами, со ссылкой на источник (Unity файл:строка или док).
+## 3. Behaviour and business rules
+Numbered rules, precise and verifiable. Formulas, timings, conditions — as numbers, with a source reference (Unity file:line or doc).
 
-## 4. Данные
-- Локальное состояние модуля: схема, миграция из Unity-ключей (ссылка на `audit/data-schema.md`).
-- Внешний/server-driven контент (если есть): контракт (ссылка на ADR), пример данных.
+## 4. Data
+- Module's local state: schema, migration from Unity keys (link to `audit/data-schema.md`).
+- External/server-driven content (if any): contract (link to ADR), sample data.
 
-## 5. Аналитика
-Таблица событий: имя, триггер, параметры.
+## 5. Analytics
+Event table: name, trigger, parameters.
 
-## 6. Анимации и звук
-Что анимируется, длительности/кривые (токены), какие звуки и когда. Ссылки на арт-брифы.
+## 6. Animations and sound
+What is animated, durations/curves (tokens), which sounds and when. Links to art briefs.
 
 ## 7. Edge cases
-Прерывание, оффлайн, повторный вход, смена локали, убийство процесса — ожидаемое поведение по каждому.
+Interruption, offline, re-entry, locale change, process kill — expected behaviour for each.
 
 ## 8. Acceptance criteria
-Чек-боксы вида «при X происходит Y». Каждое правило из п.3 покрыто минимум одним критерием.
+Checkboxes of the form "when X, Y happens". Every rule from §3 is covered by at least one criterion.
 
-## ⚠️ Конфликты источников (решённые)
-| # | Конфликт | Источники | Решение владельца | Дата |
-|---|----------|-----------|-------------------|------|
+## ⚠️ Source conflicts (resolved)
+| # | Conflict | Sources | Owner's decision | Date |
+|---|----------|---------|------------------|------|
 
-## 📌 Открытые вопросы
-Пусто перед утверждением — иначе спека не утверждается.
+## 📌 Open questions
+Empty before approval — otherwise the spec is not approved.

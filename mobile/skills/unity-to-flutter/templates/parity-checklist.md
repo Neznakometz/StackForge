@@ -1,37 +1,37 @@
-# Parity-чеклист: <модуль>
+# Parity checklist: <module>
 
-**Спека:** <ссылка, версия> | **Сборка:** <commit> | **Эталон:** Unity-сборка <версия>
-**Устройства:** iPhone <мин>, iPhone актуальный, Android слабый <модель>, Android актуальный
+**Spec:** <link, version> | **Build:** <commit> | **Reference:** Unity build <version>
+**Devices:** iPhone <min>, iPhone current, Android low-end <model>, Android current
 
-## A. Поведение (из acceptance criteria спеки)
-- [ ] <генерируется из спеки, пункт на критерий>
+## A. Behaviour (from the spec's acceptance criteria)
+- [ ] <generated from the spec, one item per criterion>
 
-## B. Визуальный паритет с Figma
-- [ ] Цвета/типографика = токены (пипетка ≥5 элементов)
-- [ ] Лейаут в допуске ±2dp на референсных экранах
-- [ ] Состояния компонентов (pressed/disabled/loading) = `design/components.md`
-- [ ] Малый экран и планшет — без поломок лейаута
+## B. Visual parity with Figma
+- [ ] Colors/typography = tokens (eyedropper ≥5 elements)
+- [ ] Layout within ±2dp tolerance on the reference screens
+- [ ] Component states (pressed/disabled/loading) = `design/components.md`
+- [ ] Small screen and tablet — no layout breakage
 
-## C. Сверка с Unity-эталоном
-- [ ] Пункты спеки «как сейчас» совпадают с эталоном
-- [ ] Характер/тайминги анимаций субъективно те же (видео бок о бок)
-- [ ] Расхождения, не помеченные как намеренные: НЕТ / список
+## C. Verification against the Unity reference
+- [ ] The spec's "as it is now" items match the reference
+- [ ] Animation feel/timings are subjectively the same (video side by side)
+- [ ] Discrepancies not flagged as intentional: NONE / list
 
-## D. Устойчивость
-- [ ] Входящий звонок / сворачивание в каждом ключевом состоянии — корректное восстановление
-- [ ] Убийство процесса — состояние восстанавливается
-- [ ] Оффлайн: поведение по спеке
-- [ ] Смена локали EN↔RU: строки переключаются, лейаут цел
-- [ ] 60fps на слабом Android (профайлер, джанк ≤2 кадров)
+## D. Robustness
+- [ ] Incoming call / backgrounding in every key state — correct recovery
+- [ ] Process kill — state is restored
+- [ ] Offline: behaviour per spec
+- [ ] Locale switch EN↔RU: strings switch, layout intact
+- [ ] 60fps on low-end Android (profiler, jank ≤2 frames)
 
-## E. Платформа/специфика
-- [ ] Tap-таргеты ≥ 48dp (Android) / 44pt (iOS)
-- [ ] Аналитика: события по спеке, нет лишних PII в payload (дебаг-режим)
-- [ ] (Детское/регулируемое) parental gate перед выходом из защищённого пространства, непробиваем перебором
+## E. Platform/specifics
+- [ ] Tap targets ≥ 48dp (Android) / 44pt (iOS)
+- [ ] Analytics: events per spec, no extra PII in payload (debug mode)
+- [ ] (Children's/regulated) parental gate before leaving the protected space, not brute-forceable
 
-## F. Только Фаза 4 (релиз)
-- [ ] Миграция данных: прогресс/покупки на ≥3 реальных дампах
-- [ ] Восстановление покупок через стор
-- [ ] Crash-free на бете ≥ 99.5%
+## F. Phase 4 only (release)
+- [ ] Data migration: progress/purchases on ≥3 real dumps
+- [ ] Purchase restoration through the store
+- [ ] Crash-free on beta ≥ 99.5%
 
-**Вердикт:** PASS / FAIL · **Баг-репорты:** <ссылки>
+**Verdict:** PASS / FAIL · **Bug reports:** <links>

@@ -1,28 +1,28 @@
 ---
 name: flutter-testing
-description: Тестирование Flutter + Riverpod 3 — unit/widget/golden, ProviderContainer.test, override провайдеров, mocktail. Применять при написании или ревью тестов во Flutter-проекте.
+description: Testing Flutter + Riverpod 3 — unit/widget/golden, ProviderContainer.test, provider overrides, mocktail. Apply when writing or reviewing tests in a Flutter project.
 ---
 
-# Flutter + Riverpod 3 — тестирование
+# Flutter + Riverpod 3 — testing
 
-## Тиры
-- unit (`package:test`, без Flutter) → widget (`testWidgets`, `flutter_test`) → integration (`integration_test`, девайс/эмулятор).
-- e2e/integration — только критические флоу; остальное юнитами (см. core-скил `tdd`).
+## Tiers
+- unit (`package:test`, no Flutter) → widget (`testWidgets`, `flutter_test`) → integration (`integration_test`, device/emulator).
+- e2e/integration — only critical flows; everything else with unit tests (see the core skill `tdd`).
 
 ## Riverpod
-- `ProviderContainer.test()` (v3, авто-dispose в конце). НЕ шарь контейнер между тестами.
-- Значение: `container.read(provider)`; для autoDispose — `container.listen(...)`, читать через подписку.
+- `ProviderContainer.test()` (v3, auto-disposes at the end). Do NOT share a container between tests.
+- Value: `container.read(provider)`; for autoDispose — `container.listen(...)`, read through the subscription.
 - Async: `await expectLater(container.read(provider.future), completion(...))`.
-- Widget: `ProviderScope` в корне `pumpWidget`, контейнер — `tester.container()`.
+- Widget: `ProviderScope` at the root of `pumpWidget`, container — `tester.container()`.
 
-## Override (всё мокается без настройки)
+## Override (everything is mockable with no setup)
 - `provider.overrideWith((ref) => fake)`;
-- `notifierProvider.overrideWithBuild((ref, self) => state)` — мокнуть только `build`, методы настоящие;
+- `notifierProvider.overrideWithBuild((ref, self) => state)` — mock only `build`, real methods;
 - `futureProvider.overrideWithValue(AsyncValue.data(x))`.
 
-## Моки
-- **mocktail** (без кодогена) — дефолт. Мокай **репозиторий**, который использует Notifier, а не сам Notifier.
-- Golden: `matchesGoldenFile('name.png')`, обновление `flutter test --update-goldens`. Гоняй на едином CI-образе (golden'ы чувствительны к платформе/шрифтам/версии).
+## Mocks
+- **mocktail** (no codegen) — default. Mock the **repository** that the Notifier uses, not the Notifier itself.
+- Golden: `matchesGoldenFile('name.png')`, update with `flutter test --update-goldens`. Run on a single CI image (goldens are sensitive to platform/fonts/version).
 
-## Доступность в тестах
-`meetsGuideline(textContrastGuideline)`, `androidTapTargetGuideline`/`iOSTapTargetGuideline`, `labeledTapTargetGuideline` — enforce контраст и размер тап-таргета (48×48 Android / 44×44 iOS).
+## Accessibility in tests
+`meetsGuideline(textContrastGuideline)`, `androidTapTargetGuideline`/`iOSTapTargetGuideline`, `labeledTapTargetGuideline` — enforce contrast and tap-target size (48×48 Android / 44×44 iOS).

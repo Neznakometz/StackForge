@@ -1,16 +1,16 @@
-# DESIGN_SPEC: <название>
+# DESIGN_SPEC: <name>
 
-## 1. Токены
-Цвета (light/dark), типографика (семейства/размеры/высоты), отступы, радиусы, тени, длительности анимаций. Источник — Figma/дизайн-система.
+## 1. Tokens
+Colors (light/dark), typography (families/sizes/line heights), spacing, radii, shadows, animation durations. Source — Figma/design system.
 
-## 2. Компоненты
-Переиспользуемые (кнопки, карточки, диалоги, поля) со всеми состояниями: default / hover / pressed / disabled / loading.
+## 2. Components
+Reusable ones (buttons, cards, dialogs, fields) with all states: default / hover / pressed / disabled / loading.
 
-## 3. Экраны
-На каждый экран: референс (ссылка + скрин), лейаут, используемые компоненты, адаптив (мобайл/планшет), переходы.
+## 3. Screens
+For each screen: reference (link + screenshot), layout, components used, responsiveness (mobile/tablet), transitions.
 
-## 4. Состояния экрана
-Для каждого: loading (skeleton, не голый спиннер) · empty · error · success.
+## 4. Screen states
+For each: loading (skeleton, not a bare spinner) · empty · error · success.
 
-## 5. Доступность
-Контраст ≥ 4.5:1, фокус-стили, клавиатура, aria/Semantics, размеры тап-таргетов, масштаб текста.
+## 5. Accessibility
+Contrast ≥ 4.5:1, focus styles, keyboard, aria/Semantics, tap-target sizes, text scaling.

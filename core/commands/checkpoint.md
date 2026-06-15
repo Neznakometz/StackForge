@@ -1,11 +1,11 @@
 ---
-description: Сохранить чекпоинт сессии перед закрытием чата (память L2).
+description: Save a session checkpoint before closing the chat (L2 memory).
 ---
 
-Создай `Sessions/checkpoints/YYYY-MM-DD-checkpoint.md` по скилу `memory`:
+Create `Sessions/checkpoints/YYYY-MM-DD-checkpoint.md` per the `memory` skill:
 
-- `## Что сделано` — конкретика: пути к файлам, числа, что именно изменилось.
-- `## Ключевые решения` — почему именно так.
-- `## Не завершено` — что делать в следующую сессию.
+- `## What was done` — specifics: file paths, numbers, exactly what changed.
+- `## Key decisions` — why this way.
+- `## Not finished` — what to do next session.
 
-Если ничего существенного не было — напиши честно, файл всё равно создай. Ответь одной строкой с путём чекпоинта.
+If nothing substantial happened — say so honestly, create the file anyway. Reply with a single line giving the checkpoint path.

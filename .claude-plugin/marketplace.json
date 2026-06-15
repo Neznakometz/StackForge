@@ -1,51 +1,57 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "claud-framework",
-  "description": "Тонкое ядро + доменные наборы для быстрого, стек-осознанного старта проектов в Claude Code.",
+  "name": "stackforge",
+  "description": "Thin core + domain bundles for a fast, stack-aware project start in Claude Code.",
   "owner": {
     "name": "Aleksandr"
   },
   "plugins": [
     {
       "name": "core",
-      "description": "Ядро: subagent-driven процесс (task-loop), кросс-модельное ревью (Codex/Gemini), память, экономия токенов, стек-осознанный /init.",
+      "description": "Core: subagent-driven process (task-loop), cross-model review (Codex/Gemini), memory, token economy, stack-aware /init.",
       "source": "./core",
       "category": "productivity"
     },
     {
       "name": "mobile",
-      "description": "Flutter + Riverpod 3: архитектура layered/MVVM, тулинг-заборы (riverpod_lint, dart analyze/format), тестирование, безопасность/доступность, Unity→Flutter миграция, релиз в сторы.",
+      "description": "Flutter + Riverpod 3: layered/MVVM architecture, tooling guardrails (riverpod_lint, dart analyze/format), testing, security/accessibility, Unity→Flutter migration, store release.",
       "source": "./mobile",
       "category": "development"
     },
     {
       "name": "spec-prep",
-      "description": "idea → спека: brainstorm, конституция, SPECIFICATION/DESIGN_SPEC/IMPLEMENTATION_PLAN с критериями приёмки. Вход для любого домена.",
+      "description": "idea → spec: brainstorm, constitution, SPECIFICATION/DESIGN_SPEC/IMPLEMENTATION_PLAN with acceptance criteria. Entry point for any domain.",
       "source": "./spec-prep",
       "category": "productivity"
     },
     {
       "name": "saas",
-      "description": "Бэкенд/веб: дизайн API и контрактов, фоновые задачи, мультитенантность. Стек-знания через /init.",
+      "description": "Backend/web: API and contract design, background jobs, multitenancy. Stack knowledge via /init.",
       "source": "./saas",
       "category": "development"
     },
     {
       "name": "ui",
-      "description": "Дизайн интерфейсов: архитектура UI, дизайн-система/токены, доступность (WCAG).",
+      "description": "Interface design: generative ui-designer agent, visual-craft (numeric rules), drop-in tokens (light+dark, AA), UI architecture, accessibility; generate→audit→review loop with professional tools.",
       "source": "./ui",
       "category": "development"
     },
     {
       "name": "games",
-      "description": "Геймдев: GDD и игровые системы, выбор движка (Godot/Unity/Unreal), агент game-designer. Урезанная иерархия студии.",
+      "description": "Gamedev: GDD and game systems, engine choice (Godot/Unity/Unreal), game-designer agent. Trimmed-down studio hierarchy.",
       "source": "./games",
       "category": "development"
     },
     {
       "name": "analytics",
-      "description": "Аналитика/ресёрч: fusion-генерация (Claude+Codex+Gemini), многоисточниковый research, сборка отчётов.",
+      "description": "Analytics/research: fusion generation (Claude+Codex+Gemini), multi-source research, report assembly.",
       "source": "./analytics",
+      "category": "productivity"
+    },
+    {
+      "name": "storage",
+      "description": "Storage and memory: L3 durable memory (/dream, /warmup, /memory-gc), rolling-log, RAG (pgvector/Qdrant), long-context strategies (index vs RAG vs RLM vs grep).",
+      "source": "./storage",
       "category": "productivity"
     }
   ]

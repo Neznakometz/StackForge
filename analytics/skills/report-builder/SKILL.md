@@ -1,18 +1,18 @@
 ---
 name: report-builder
-description: Сборка аналитических отчётов и ресёрча — многоисточниковый поиск, проверка фактов, синтез с цитированием, оформление. Применять при подготовке исследований, обзоров, отчётов.
+description: Building analytical reports and research — multi-source search, fact-checking, synthesis with citation, formatting. Apply when preparing studies, reviews, reports.
 ---
 
-# Сборка отчётов и research
+# Building reports and research
 
-## Процесс
-1. **Уточни scope.** Недоспецифицированный запрос (без бюджета/региона/критериев) → 2–3 уточняющих вопроса до старта.
-2. **Fan-out поиска.** Несколько запросов под разные грани темы; читай первоисточники, не сниппеты.
-3. **Проверка фактов.** Текущие факты (цены, лидеры, статусы, законы) — только из свежего поиска, не из памяти. Противоречивые источники — показывай расхождение, не выбирай молча.
-4. **Синтез с цитированием.** Каждое нетривиальное утверждение — со ссылкой на источник. Для спорного — несколько перспектив.
-5. **Оформление.** Прозой и таблицами, без раздувания. Документные форматы (docx/pdf/pptx/xlsx) — через соответствующие скилы.
+## Process
+1. **Clarify the scope.** An underspecified request (without a budget/region/criteria) → 2–3 clarifying questions before starting.
+2. **Search fan-out.** Several queries for different facets of the topic; read primary sources, not snippets.
+3. **Fact-checking.** Current facts (prices, leaders, statuses, laws) — only from fresh search, not from memory. Conflicting sources — show the discrepancy, don't choose silently.
+4. **Synthesis with citation.** Every non-trivial statement — with a link to the source. For a contested one — several perspectives.
+5. **Formatting.** With prose and tables, without bloat. Document formats (docx/pdf/pptx/xlsx) — via the corresponding skills.
 
-## Усиление
-- Глубокий многоступенчатый ресёрч с адверсариал-проверкой — скил `deep-research` (если установлен).
-- Спорные/стратегические выводы — прогнать через `fusion` для нескольких точек зрения.
-- Визуализация данных — графики/дашборды в отчёт.
+## Reinforcement
+- Deep multi-stage research with adversarial verification — the `deep-research` skill (if installed).
+- Contested/strategic conclusions — run them through `fusion` for several points of view.
+- Data visualization — charts/dashboards into the report.

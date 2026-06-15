@@ -9,7 +9,7 @@
             "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.js\"",
             "commandWindows": "node \"$env:CLAUDE_PLUGIN_ROOT\\hooks\\session-start.js\"",
             "timeout": 5,
-            "statusMessage": "Загрузка контекста проекта..."
+            "statusMessage": "Loading project context..."
           }
         ]
       }

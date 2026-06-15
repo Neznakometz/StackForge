@@ -1,22 +1,24 @@
 <div align="center">
 
-# ⚙️ Claud Framework
+# ⚙️ StackForge
 
-### **Тонкое ядро + доменные наборы для быстрого, стек-осознанного старта проектов в Claude Code**
+### **Spin up a new project in Claude Code with one command — stack-aware setup, a proven workflow, and cross-model review**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.2.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/built%20for-Claude%20Code-CC785C" alt="Built for Claude Code">
+  <img src="https://img.shields.io/badge/knowledge%20packs-doc--grounded-brightgreen" alt="Doc-grounded">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
 
 <p align="center">
-  <a href="#-установка">Установка</a> •
-  <a href="#-ядро">Ядро</a> •
-  <a href="#-стек-осознанный-init">/init</a> •
-  <a href="#-наборы">Наборы</a> •
-  <a href="#-расширение-и-обновление">Расширение</a>
+  <a href="#-why">Why</a> •
+  <a href="#-install">Install</a> •
+  <a href="#-the-core">Core</a> •
+  <a href="#-the-sets">Sets</a> •
+  <a href="#-stack-aware-init">/init</a> •
+  <a href="#-extend--update">Extend</a>
 </p>
 
 </div>
@@ -25,177 +27,189 @@
 
 <div align="center">
 
-## 📊 Состав
+## 📊 At a glance
 
-| **Наборы** | **Агенты** | **Скилы ядра** | **Команды** | **Knowledge-паки** |
-|:----------:|:----------:|:--------------:|:-----------:|:------------------:|
-| **7** | **7** | **7** | **6** | **13** |
+| **Sets** | **Agents** | **Skills** | **Commands** | **Knowledge packs** | **Hooks** |
+|:--------:|:----------:|:----------:|:------------:|:-------------------:|:---------:|
+| **8** | **12** | **31** | **10** | **13** | **4** |
+
+<sub>A thin core + 7 domain sets · every knowledge pack grounded in official docs with a verification date</sub>
 
 </div>
 
 ---
 
-## 🎯 Идея
+## 🎯 Why
 
-Разворачивать новый проект **одной командой**, со стек-осознанной настройкой, без
-ручной установки скилов каждый раз. Тонкое **ядро** ставится всегда; `/init`
-спрашивает стек и собирает `CLAUDE.md` под него из knowledge-паков; **доменный
-набор** добавляет специализацию.
+Every new project means installing skills again, writing rules again, wiring up a process again. StackForge does it in **one command**: a thin **core** is always installed, `/init` asks for your stack and assembles `CLAUDE.md` for it, and a **domain set** adds the specialization.
 
 ```
-/plugin install core  →  /init (спросит стек)  →  /plugin install <домен>
-        │                       │                          │
-   capability             стек-осознанный             доменные
- (агенты/скилы/           скаффолд проекта            скилы/агенты
-  команды/hooks)         (CLAUDE.md под стек)
+/plugin install core  →  /init (asks for the stack)  →  /plugin install <domain>
+        │                        │                            │
+   capability               CLAUDE.md for the stack       domain
+ (agents/skills/            from knowledge packs          skills/agents
+  commands/hooks)
 ```
 
-Принцип взят из проверенного сетапа (subagent-driven цикл с кросс-модельным
-ревью) и обобщён под любой стек.
+### Real benefits
+
+- **🤖 Cross-model review.** Claude writes → **Codex (ChatGPT) and Gemini** attack the diff → Claude arbitrates. An asymmetry of roles, not "merge N answers." A technique proven on a real project (MeetREC), wired into every task cycle.
+- **📚 Knowledge packs from official docs.** 13 packs (PHP/Laravel, Django, NestJS, Postgres/MySQL, Redis, ES/ClickHouse, React, Vue/Nuxt, Tailwind, Docker/K8s, GitLab/Ansible, Grafana/Sentry, Flutter/Riverpod) — rules from first-party documentation, with sources and `last_verified`. Low hallucination risk, not blog spam.
+- **🎛 Stack-aware start.** `/init` asks for the stack (multi-select) and assembles rules for it only; conflicting packs (React ⊥ Vue, Riverpod ⊥ Bloc) are never glued together.
+- **🪙 Token economy on four fronts.** Discipline for reading/generation/sessions + optional plugins for code, prose, search, and command output.
+- **🧠 Memory across sessions.** L1 (context) + L2 (checkpoints, auto every 10 tool calls); hooks load PROGRESS + checkpoint at startup.
+- **🪶 Thin core + delegation.** The core stays lean; domain- and stack-specific things live in plugins and packs, loaded lazily on trigger.
 
 ---
 
-## ⚡ Установка
+## ⚡ Install
 
 ```bash
-# зарегистрировать маркетплейс
-/plugin marketplace add <owner>/Claud_Framework
-# поставить ядро
-/plugin install core@claud-framework
-# развернуть среду под проект (спросит стек)
+# register the marketplace (from GitHub)
+/plugin marketplace add Neznakometz/StackForge
+# install the core
+/plugin install core@stackforge
+# set up the environment for the project (asks for the stack)
 /init
-# добавить доменный набор
-/plugin install mobile@claud-framework
+# add a domain set
+/plugin install saas@stackforge
 ```
 
 ---
 
-## 🧠 Ядро
+## 🧠 The Core
 
 <table>
 <tr>
 <td width="50%">
 
-### 🔄 Процесс (task-loop)
-Subagent-driven цикл: `implementer` → `spec-reviewer` →
-`code-reviewer` (+`design-reviewer` для UI) →
-**кросс-модельное ревью** → `test-runner`.
-Конец фазы — `phase-check` + `security-auditor` +
-adversarial-review.
+### 🔄 Process (task-loop)
+`implementer` → `spec-reviewer` →
+`code-reviewer` (+`design-reviewer` for UI) →
+**cross-model review** → `test-runner`.
+End of phase — `phase-check` + `security-auditor` +
+adversarial review.
 
 </td>
 <td width="50%">
 
-### 🤖 Кросс-модельное ревью
-Claude пишет → **Codex/Gemini** атакует → Claude
-арбитрирует. Внешний «второй мозг» через CLI,
-обязателен на каждой задаче. Асимметрия ролей,
-а не «смержить N ответов».
+### 🤖 Cross-model review
+Claude writes → **Codex/Gemini** attacks → Claude
+arbitrates. An external "second brain" via CLI,
+mandatory on every task.
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### 💾 Память
-L1 (контекст: `/compact`, `/convolife`) +
-L2 (чекпоинты: `/checkpoint`, авто каждые 10 tool-calls).
-L3 (durable/SQLite) — опционально.
-Hooks подгружают PROGRESS+checkpoint при старте.
+### 💾 Memory (L1+L2)
+`/compact`, `/convolife`, `/checkpoint`,
+auto-checkpoint every 10 tool calls.
+Hooks load context at session start.
 
 </td>
 <td width="50%">
 
-### 🪙 Экономия токенов
-Дисциплина чтения/генерации/сессий + опц. плагины
-`ponytail-safe`, `ponytail-terse`, `codegraph-nav`,
-`bash-output-compression` — 4 разные статьи расхода.
+### 🪙 Token economy
+Discipline + optional plugins `ponytail-safe`,
+`ponytail-terse`, `codegraph-nav`,
+`bash-output-compression`.
 
 </td>
 </tr>
 </table>
 
-**Агенты:** implementer · spec-reviewer · code-reviewer · design-reviewer · security-auditor · test-runner · scout
-**Скилы:** task-loop · cross-model-review · tdd · contracts · token-economy · memory · prompt-audit
-**Команды:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge
+**Agents (7):** implementer · spec-reviewer · code-reviewer · design-reviewer · security-auditor · test-runner · scout
+**Skills (7):** task-loop · cross-model-review · tdd · contracts · token-economy · memory · prompt-audit
+**Commands:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge
 
 ---
 
-## 🎛 Стек-осознанный /init
+## 📦 The Sets
 
-`/init` делает проект «умным» под конкретный стек:
-
-1. Определяет greenfield / brownfield (сканирует `package.json`/`pubspec.yaml`/…).
-2. Спрашивает **(мультивыбор)**: тип проекта + компоненты стека. Есть пресет «наш стек».
-3. Собирает `CLAUDE.md` из выбранных **knowledge-паков** (правила из официальных доков → низкий риск галлюцинаций).
-4. Скаффолдит память (PROGRESS.md), конституцию, структуру спеки, безопасные permissions.
-5. Активирует доменные скилы под выбор.
-
-> При конфликте паков (например `React ⊥ Vue`, `Riverpod ⊥ Bloc`) `/init` не склеит противоречия — спросит, какой оставить.
-
----
-
-## 📦 Наборы
-
-| Набор | Назначение | Статус |
-|-------|-----------|:------:|
-| **core** | Ядро: процесс, ревью, память, экономия токенов, /init | ✅ |
-| **mobile** | Flutter + Riverpod (+ Unity→Flutter миграция) | ✅ |
-| **spec-prep** | idea → SPECIFICATION / DESIGN_SPEC / IMPLEMENTATION_PLAN | ✅ |
-| **saas** | бэкенд/веб: api-design, background-jobs, multitenancy | ✅ |
-| **ui** | дизайн интерфейсов: ui-architecture, design-system, a11y | ✅ |
-| **games** | геймдев: GDD, выбор движка, game-designer | ✅ |
-| **analytics** | research/аналитика: fusion, report-builder | ✅ |
-
-### 📱 Mobile — зафиксировано
-
-Flutter + **Riverpod 3** (`@riverpod` + Freezed). Слабость Riverpod (свобода
-структуры → дрейф агента) закрыта тулингом: `riverpod_lint` в блокирующем
-analyze-hook, `dart-lsp` инлайн-диагностика, жёсткие конвенции, path-scoped rules.
-Берём агностичное из VGV (hooks, security, a11y, testing) + правила evanca.
-Пишем сами: Unity→Flutter миграция, flutter-release.
+| Set | Purpose |
+|-----|---------|
+| **core** | Core: process, review, memory, token economy, /init |
+| **spec-prep** | idea → SPECIFICATION / DESIGN_SPEC / IMPLEMENTATION_PLAN with acceptance criteria |
+| **saas** | backend/web: api-design, background-jobs, multitenancy |
+| **ui** | interface design: generative ui-designer, visual-craft, drop-in tokens, accessibility |
+| **mobile** | Flutter + Riverpod 3, lint guardrails, Unity→Flutter migration, release |
+| **games** | gamedev: GDD, engine choice (Godot/Unity/Unreal), game-designer |
+| **analytics** | research/analytics: fusion (Claude+Codex+Gemini), report-builder |
+| **storage** | storage/memory: durable memory + rolling-log, RAG, long-context strategies (incl. RLM) |
 
 ---
 
-## 🧩 Расширение и обновление
+## 📚 Knowledge packs (13, doc-grounded)
 
-**Расширить стек** — `/add-stack <технология>`: заземляет правила на официальные
-доки, создаёт пак, регистрирует в `registry.json`.
+| Category | Packs |
+|----------|-------|
+| **Backend** | php-laravel · python-django · node-nestjs |
+| **Data** | data-sql (PG/MySQL) · data-cache (Redis/Memcached) · data-search-olap (ES/ClickHouse) |
+| **Frontend** | frontend-react · frontend-vue-nuxt · frontend-styling (Tailwind/SCSS/Vite) |
+| **DevOps** | devops-containers · devops-ci-infra · devops-observability |
+| **Mobile** | flutter-riverpod |
 
-**Обновить компоненты** — два контура:
-- код (агенты/скилы/команды) → `/plugin update` (штатно, маркетплейс);
-- знания (паки) → `/update-knowledge [id|all]`: сверка с доками, semver,
-  `last_verified`, устаревание 90 дней / новая версия таргета.
-
-Единый источник правды — `core/knowledge/registry.json`. Подробности — [CONTRIBUTING.md](CONTRIBUTING.md).
+Each pack is `rules.md` (rules from the docs) + `sources.md` (sources + versions) + an entry in `registry.json` (`version`, `last_verified`). The registry is the single source of truth for `/init`, `/add-stack`, and `/update-knowledge`.
 
 ---
 
-## 🗺 Структура
+## 🎛 Stack-aware /init
+
+1. Detects greenfield/brownfield (scans `package.json`/`pubspec.yaml`/…).
+2. Asks **(multi-select)**: project type + stack components. There's an "our stack" preset.
+3. Assembles `CLAUDE.md` from the chosen packs; conflicting ones (React ⊥ Vue, Riverpod ⊥ Bloc) are never glued — it asks.
+4. Scaffolds memory (PROGRESS.md), the constitution, the spec, safe permissions.
+5. Activates the domain skills.
+
+---
+
+## 🧩 Extend & update
+
+- **New stack** → `/add-stack <technology>`: grounds the rules in the docs, creates a pack, registers it.
+- **New domain** → a plugin folder + an entry in `marketplace.json` (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+- **Updating code** → `/plugin update` (native, via the marketplace).
+- **Updating knowledge** → `/update-knowledge [id|all]`: reconcile with the docs, semver, staleness at 90 days / a new target version.
+
+Optional MCP servers are referenced, never bundled — see [MCP.md](MCP.md). Everything degrades gracefully without them.
+
+---
+
+## 🧩 IDE (VS Code)
+
+The framework is **IDE-agnostic** — inside the Claude Code VS Code extension, plugins/skills/agents/commands/hooks behave identically to the terminal; nothing needs to change. The extension adds editor UX (inline diffs, sidebar, LSP diagnostics). `/init` can scaffold `.vscode/extensions.json` so Claude gets LSP diagnostics for your stack with no extra `analyze` runs.
+
+---
+
+## 🛠 Maintaining the framework
+
+This repo dogfoods itself: a root [`CLAUDE.md`](CLAUDE.md) holds the authoring conventions (an agent editing the framework follows them), `scripts/validate.sh` checks structure (JSON, frontmatter, registry, plugins, hooks), and CI runs it on every push.
+
+---
+
+## ⚖️ License & disclaimer
+
+MIT — see [LICENSE](LICENSE). Attribution for referenced projects, standards, and conventions
+is in [CREDITS.md](CREDITS.md). This project **references** external tools (installed
+separately) and expresses ideas/facts in its own words — it does not bundle third-party code.
+
+**Not affiliated with, endorsed by, or sponsored by Anthropic.** "Claude" and "Claude Code"
+are trademarks of Anthropic; this is an independent community project for use with Claude Code.
+
+## 🗺 Layout
 
 ```
-Claud_Framework/
-├── .claude-plugin/marketplace.json
-├── core/
-│   ├── .claude-plugin/plugin.json
-│   ├── agents/      7 субагентов
-│   ├── skills/      task-loop · cross-model-review · tdd · contracts · …
-│   ├── commands/    init · next-task · phase-check · checkpoint · add-stack · …
-│   ├── hooks/       session-start · pre-compact
-│   ├── knowledge/   registry.json · _template/ · паки
-│   └── templates/   settings.json
-└── LICENSE · CONTRIBUTING · CHANGELOG · README
+StackForge/
+├── .claude-plugin/marketplace.json     # 8 plugins
+├── core/        agents · skills · commands · hooks · knowledge/ · templates
+├── spec-prep/ · saas/ · ui/ · mobile/ · games/ · analytics/ · storage/
+├── scripts/validate.sh · .github/workflows/validate.yml
+└── LICENSE · CONTRIBUTING · CHANGELOG · MCP · README
 ```
-
----
-
-## 🛣 Дальше
-
-- Наполнить knowledge-паки из доков (backend/frontend/devops) батчами.
-- Собрать доменные плагины: spec-prep, saas, ui, games, mobile, analytics.
 
 ---
 
 <div align="center">
-<sub>MIT · сделано для Claude Code</sub>
+<sub>MIT · built for Claude Code · knowledge packs grounded in official docs (verified 2026-06-15)</sub>
 </div>

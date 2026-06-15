@@ -1,10 +1,10 @@
-# Источники — <технология>
+# Sources — <technology>
 
-Откуда взято каждое правило. Нужен для `/update-knowledge`: при сверке агент
-идёт по этим ссылкам и проверяет, не изменились ли доки/версии.
+Where each rule was taken from. Needed for `/update-knowledge`: during reconciliation the agent
+follows these links and checks whether the docs/versions have changed.
 
-| Правило / тема | Источник (URL) | Раздел | Версия на момент сверки |
+| Rule / topic | Source (URL) | Section | Version at time of reconciliation |
 |----------------|----------------|--------|--------------------------|
-| [тема] | https://... | [раздел доки] | [vX.Y] |
+| [topic] | https://... | [doc section] | [vX.Y] |
 
-> Последняя сверка: YYYY-MM-DD
+> Last reconciliation: YYYY-MM-DD

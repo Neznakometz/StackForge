@@ -1,22 +1,22 @@
 <!--
-ШАБЛОН knowledge-пака. Скопируй папку, переименуй в knowledge/<id>/, заполни.
-Правила бери ТОЛЬКО из официальных доков (см. sources в registry.json) —
-это и есть защита от галлюцинаций. Версию и дату ставь обязательно.
-Зарегистрируй пак в core/knowledge/registry.json (status: ready).
+TEMPLATE for a knowledge pack. Copy the folder, rename to knowledge/<id>/, fill it in.
+Take rules ONLY from the official docs (see sources in registry.json) —
+that's exactly the protection against hallucinations. Always set the version and date.
+Register the pack in core/knowledge/registry.json (status: ready).
 -->
 
-# <Технология> — правила
-> Targets: <версии> · Источник: official docs · Обновлено: YYYY-MM-DD
+# <Technology> — rules
+> Targets: <versions> · Source: official docs · Updated: YYYY-MM-DD
 
-## Жёсткие правила
-- [операциональное, проверяемое правило — «используй X», не «пиши хорошо»]
+## Hard rules
+- [an operational, verifiable rule — "use X", not "write well"]
 - [...]
 
-## Path-scoped (опц.)
-- `путь/**` → [что enforce в этом слое]
+## Path-scoped (opt.)
+- `path/**` → [what to enforce in this layer]
 
-## Анти-паттерны (что ловить на ревью)
-- [конкретный анти-паттерн → как правильно]
+## Anti-patterns (what to catch in review)
+- [a specific anti-pattern → how to do it right]
 
-## Конфликтует с
-- [id паков, несовместимых по мнению — /init не склеит их вместе]
+## Conflicts with
+- [ids of packs incompatible by opinion — /init won't glue them together]

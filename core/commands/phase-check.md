@@ -1,13 +1,13 @@
 ---
-description: Проверка критериев приёмки текущей фазы перед её закрытием.
+description: Check the current phase's acceptance criteria before closing it.
 ---
 
-Закрытие фазы:
+Closing a phase:
 
-1. Определи текущую фазу по `PROGRESS.md`; выпиши её критерии приёмки из плана реализации ДОСЛОВНО.
-2. Запусти `test-runner`: полный прогон команд качества проекта (lint, typecheck, unit, e2e если фаза этого требует).
-3. Запусти `security-auditor` на diff фазы.
-4. Запусти `cross-model-review` (adversarial) на весь diff фазы (`--base <старт-фазы>`).
-5. По каждому критерию приёмки — проверь ФАКТИЧЕСКИ (команда/тест/ручная инструкция), не «по памяти». Таблица: критерий → как проверил → PASS/FAIL.
-6. При любом FAIL — фаза не закрыта: создай задачи на исправление в PROGRESS.md.
-7. Все PASS → пометь фазу выполненной в PROGRESS.md и ОСТАНОВИСЬ: следующую фазу начинает пользователь.
+1. Determine the current phase from `PROGRESS.md`; write out its acceptance criteria from the implementation plan VERBATIM.
+2. Run `test-runner`: a full run of the project's quality commands (lint, typecheck, unit, e2e if the phase requires it).
+3. Run `security-auditor` on the phase diff.
+4. Run `cross-model-review` (adversarial) on the whole phase diff (`--base <phase-start>`).
+5. For each acceptance criterion — verify it FACTUALLY (a command/test/manual instruction), not "from memory". Table: criterion → how verified → PASS/FAIL.
+6. On any FAIL — the phase isn't closed: create fix tasks in PROGRESS.md.
+7. All PASS → mark the phase done in PROGRESS.md and STOP: the next phase is started by the user.

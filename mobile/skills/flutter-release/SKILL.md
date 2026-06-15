@@ -1,26 +1,26 @@
 ---
 name: flutter-release
-description: Сборка и публикация Flutter-приложения в App Store и Google Play — build appbundle/ipa, подпись, обфускация, чеклисты сабмишена. Применять при подготовке релиза, бета-теста или выкладки в сторы.
+description: Building and publishing a Flutter app to the App Store and Google Play — build appbundle/ipa, signing, obfuscation, submission checklists. Apply when preparing a release, a beta test, or a store rollout.
 ---
 
-# Flutter — релиз в сторы
+# Flutter — release to the stores
 
-Источник: docs.flutter.dev/deployment.
+Source: docs.flutter.dev/deployment.
 
 ## Android (Google Play)
-- Сборка: `flutter build appbundle` → `build/app/outputs/bundle/release/app-release.aab` (AAB — предпочтительный формат Play). R8-шринкер включён по умолчанию.
-- Подпись: upload-keystore → `android/key.properties` + `signingConfigs` в `android/app/build.gradle`. **Keystore и пароли НЕ коммитить.** `applicationId`, `versionCode`/`versionName` из `pubspec version:`.
-- Чеклист: ревизия манифеста/permissions, release-подпись, сборка AAB, загрузка в Play Console (Play App Signing).
+- Build: `flutter build appbundle` → `build/app/outputs/bundle/release/app-release.aab` (AAB — the preferred Play format). R8 shrinker is on by default.
+- Signing: upload-keystore → `android/key.properties` + `signingConfigs` in `android/app/build.gradle`. **Do NOT commit the keystore and passwords.** `applicationId`, `versionCode`/`versionName` from `pubspec version:`.
+- Checklist: review the manifest/permissions, release signing, build the AAB, upload to Play Console (Play App Signing).
 
 ## iOS (App Store)
-- Сборка: `flutter build ipa` → `.xcarchive` в `build/ios/archive/`, `.ipa` в `build/ios/ipa/`.
-- Подпись: в Xcode (Team, bundle id, provisioning); зарегистрируй bundle id в App Store Connect заранее.
-- Сабмит: `.ipa` через Apple Transport / `xcrun altool` / Xcode Organizer → заполнить листинг в App Store Connect.
+- Build: `flutter build ipa` → `.xcarchive` in `build/ios/archive/`, `.ipa` in `build/ios/ipa/`.
+- Signing: in Xcode (Team, bundle id, provisioning); register the bundle id in App Store Connect ahead of time.
+- Submit: `.ipa` via Apple Transport / `xcrun altool` / Xcode Organizer → fill in the listing in App Store Connect.
 
-## Обязательно для обоих
-- Обфускация: `--obfuscate --split-debug-info=<dir>`; символы сохранить для деобфускации стектрейсов.
-- Бета: TestFlight (iOS) / закрытый трек (Android) → постепенный rollout (10→50→100%).
-- Размер: следи за весом сборки (одна из целей миграции); арт-бюджет под контролем.
+## Required for both
+- Obfuscation: `--obfuscate --split-debug-info=<dir>`; keep symbols for de-obfuscating stack traces.
+- Beta: TestFlight (iOS) / closed track (Android) → gradual rollout (10→50→100%).
+- Size: watch the build weight (one of the migration goals); keep the art budget under control.
 
 ## CI/CD
-fastlane / Codemagic / GitHub Actions — docs.flutter.dev/deployment/cd. AAB-путь для fastlane: `../build/app/outputs/bundle/release/app-release.aab`.
+fastlane / Codemagic / GitHub Actions — docs.flutter.dev/deployment/cd. AAB path for fastlane: `../build/app/outputs/bundle/release/app-release.aab`.

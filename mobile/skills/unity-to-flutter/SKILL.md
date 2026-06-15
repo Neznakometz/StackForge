@@ -1,58 +1,58 @@
 ---
 name: unity-to-flutter
-description: Миграция приложения с Unity (C#) на Flutter. Применять при переносе существующего Unity-проекта на Flutter — аудит, спеки, реализация, parity-QA, миграция данных. Переносим ПОВЕДЕНИЕ, не код.
+description: Migrating an app from Unity (C#) to Flutter. Apply when porting an existing Unity project to Flutter — audit, specs, implementation, parity QA, data migration. We port BEHAVIOUR, not code.
 ---
 
-# Unity → Flutter миграция
+# Unity → Flutter migration
 
-Методология из реального проекта, обобщённая. Целевой стек — `flutter-riverpod`.
+A methodology generalized from a real project. Target stack — `flutter-riverpod`.
 
-## Принцип: миграция = перенос ПОВЕДЕНИЯ, не кода
+## Principle: migration = porting BEHAVIOUR, not code
 
-Unity-код НЕ портируется построчно. C# читается как **документация фактического поведения** (логика, edge cases, формулы прогрессии, тайминги анимаций); из него извлекается спека; Flutter пишется с нуля по спеке. Дешевле, чище, убирает техдолг.
+Unity code is NOT ported line by line. C# is read as **documentation of actual behaviour** (logic, edge cases, progression formulas, animation timings); a spec is extracted from it; Flutter is written from scratch against the spec. Cheaper, cleaner, removes the tech debt.
 
-## Иерархия источников истины (при конфликте — старший побеждает)
+## Source-of-truth hierarchy (on conflict, the higher one wins)
 
-1. **Figma** — как должно выглядеть.
-2. **Продуктовые доки / перечень фич** — как должно работать (целевое поведение).
-3. **Unity-код** — как работает сейчас (фактическая логика, edge cases).
-4. **Vision** — куда движемся (влияет на интерфейсы/контракты, не на скоуп v1).
+1. **Figma** — how it should look.
+2. **Product docs / feature list** — how it should work (target behaviour).
+3. **Unity code** — how it works now (actual logic, edge cases).
+4. **Vision** — where we are heading (affects interfaces/contracts, not the v1 scope).
 
-Конфликт источников агент НЕ решает сам → блок `⚠️ КОНФЛИКТ` в артефакт + эскалация владельцу. Нет данных в источниках → вопрос, не догадка («не изобретать поведение»).
+The agent does NOT resolve source conflicts itself → a `⚠️ CONFLICT` block in the artifact + escalation to the owner. No data in the sources → a question, not a guess ("do not invent behaviour").
 
-## Фазы и гейты
+## Phases and gates
 
-- **Ф0 — Входы.** Закрой чеклист (Unity-репо как ФС + версия/пакеты, эталонная сборка iOS/Android, 15–30-мин скринкаст прохождения, Figma-доступ + пометка `[ACTUAL]`/`[ARCHIVE]`, перечень фич, схема пользовательских данных, аккаунты сторов). Без закрытия Ф0 агенты работают вслепую.
-- **Ф1 — Аудит и фундамент.** `unity-auditor` → инвентарь модулей + behavior-спеки + карта ассетов + схема данных. Дизайн-экстракт → tokens + экранные спеки. Архитектор → скелет репо (feature-first, Riverpod, go_router, i18n, аналитика, CI) + дизайн-система + ADR. **Гейт Ф1 (главное урезание скоупа):** владелец по каждому модулю решает `переносим / упрощаем / выкидываем / отложено`.
-- **Ф2 — Вертикальный срез.** Один сквозной путь через весь пайплайн (спека→код→QA) на реальных устройствах. Гейт: срез зелёный, владелец прошёл руками. Не работает пайплайн — чинить процесс, не масштабировать.
-- **Ф3 — Конвейер модулей.** Цикл на модуль: спека → ревью владельца → код + арт → parity-QA → мердж. Порядок: от системообразующих к периферии. WIP-лимит ≤2 модуля.
-- **Ф4 — Данные и релиз.** Перенос локальных данных/прогресса/покупок (НЕ потерять пользователей), восстановление покупок через сторы, бета → постепенный rollout (10→50→100%) с откатом на Unity как fallback. Гейт: crash-free ≥99.5%, retention не хуже старой версии.
+- **Ph0 — Inputs.** Close the checklist (Unity repo as a filesystem + version/packages, reference iOS/Android build, 15–30-min playthrough screencast, Figma access + `[ACTUAL]`/`[ARCHIVE]` tagging, feature list, user-data schema, store accounts). Without closing Ph0 the agents work blind.
+- **Ph1 — Audit and foundation.** `unity-auditor` → module inventory + behaviour specs + asset map + data schema. Design extract → tokens + screen specs. Architect → repo skeleton (feature-first, Riverpod, go_router, i18n, analytics, CI) + design system + ADR. **Ph1 gate (the main scope cut):** for each module the owner decides `port / simplify / drop / deferred`.
+- **Ph2 — Vertical slice.** One end-to-end path through the entire pipeline (spec→code→QA) on real devices. Gate: the slice is green, the owner went through it by hand. If the pipeline does not work — fix the process, do not scale up.
+- **Ph3 — Module conveyor.** Per-module cycle: spec → owner review → code + art → parity QA → merge. Order: from foundational to peripheral. WIP limit ≤2 modules.
+- **Ph4 — Data and release.** Migrating local data/progress/purchases (do NOT lose users), restoring purchases through the stores, beta → gradual rollout (10→50→100%) with a rollback to Unity as a fallback. Gate: crash-free ≥99.5%, retention no worse than the old version.
 
-## Команда (поверх агентов ядра)
+## Team (on top of the core agents)
 
-Ядро уже даёт: `implementer` (= Flutter-разработчик), `spec-reviewer`, `code-reviewer`, `cross-model-review`. Набор добавляет миграционно-специфичные роли: `unity-auditor` (археология Unity-кода) и `qa-parity` (паритет с эталонной сборкой). Архитектор/спек-райтер — это `implementer`/оркестратор с соответствующим context pack.
+The core already provides: `implementer` (= Flutter developer), `spec-reviewer`, `code-reviewer`, `cross-model-review`. The set adds migration-specific roles: `unity-auditor` (Unity-code archaeology) and `qa-parity` (parity with the reference build). The architect/spec writer is the `implementer`/orchestrator with the appropriate context pack.
 
-## Сопоставление парадигм
+## Paradigm mapping
 
 | Unity | Flutter + Riverpod |
 |-------|--------------------|
-| Scene / GameObject / Prefab | дерево виджетов / переиспользуемые Widget'ы |
-| MonoBehaviour `Update()` | декларативный rebuild; анимации — `AnimationController`/`Ticker` |
-| MonoBehaviour-поля (состояние) | `Notifier`/`AsyncNotifier` + Freezed |
-| Синглтон-менеджеры | провайдеры (`@riverpod`, `keepAlive` где нужно) |
-| ScriptableObject (данные) | доменные модели + Repository |
+| Scene / GameObject / Prefab | widget tree / reusable Widgets |
+| MonoBehaviour `Update()` | declarative rebuild; animations — `AnimationController`/`Ticker` |
+| MonoBehaviour fields (state) | `Notifier`/`AsyncNotifier` + Freezed |
+| Singleton managers | providers (`@riverpod`, `keepAlive` where needed) |
+| ScriptableObject (data) | domain models + Repository |
 | Coroutines / `IEnumerator` | `async`/`await`, `Stream`, `Future` |
-| PlayerPrefs | `shared_preferences` / `flutter_secure_storage` (секреты) |
-| Реальный игровой цикл/физика | Flutter + Flame; меню/логика всё равно на Riverpod |
+| PlayerPrefs | `shared_preferences` / `flutter_secure_storage` (secrets) |
+| Real game loop/physics | Flutter + Flame; menus/logic still on Riverpod |
 
-## Definition of Done модуля
+## Module Definition of Done
 
-1. Спека утверждена владельцем (конфликты источников решены).
-2. Линт + unit-тесты логики + golden ключевых экранов зелёные.
-3. Parity-чеклист закрыт (поведение = спека, визуал = Figma в допусках).
-4. Данные/контент модуля — по контракту, не зашиты в код (если применимо).
-5. Аналитика проброшена; i18n полная, без захардкоженных строк.
+1. Spec approved by the owner (source conflicts resolved).
+2. Lint + unit tests for the logic + goldens for key screens are green.
+3. Parity checklist closed (behaviour = spec, visuals = Figma within tolerances).
+4. Module data/content — per contract, not hardcoded (if applicable).
+5. Analytics wired up; i18n complete, no hardcoded strings.
 
-Шаблоны — в `templates/`: `module-spec-template.md`, `parity-checklist.md`.
+Templates — in `templates/`: `module-spec-template.md`, `parity-checklist.md`.
 
-> Если приложение детское/регулируемое (COPPA/GDPR-K) — добавь нерушимые правила: parental gate перед выходом из детского пространства, ноль PII ребёнка в логах/аналитике, server-driven контент. Это доменная надстройка, не часть общей миграции.
+> If the app is for children/regulated (COPPA/GDPR-K) — add the inviolable rules: a parental gate before leaving the kids' space, zero child PII in logs/analytics, server-driven content. This is a domain overlay, not part of the general migration.

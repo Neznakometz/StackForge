@@ -1,23 +1,23 @@
 ---
 name: prompt-audit
-description: Аудит системного промпта/CLAUDE.md по 12 критериям с конкретным планом улучшений. Применять для проверки качества собственных наборов и CLAUDE.md проекта.
+description: Audit of the system prompt/CLAUDE.md against 12 criteria with a concrete improvement plan. Apply to check the quality of your own sets and the project's CLAUDE.md.
 ---
 
-# Аудит промпта (CLAUDE.md / AGENTS.md)
+# Prompt audit (CLAUDE.md / AGENTS.md)
 
-Оцени файл по 12 критериям (1–10 каждый), для каждого: что хорошо / чего не хватает.
+Rate the file against 12 criteria (1–10 each), for each: what's good / what's missing.
 
-1. **Идентичность агента** — кто, для кого, контекст запуска.
-2. **Профиль владельца** — стек, язык, главный критерий ценности.
-3. **Анти-клише** — явный список запрещённых фраз/поведений (конкретика > «не болтай»).
-4. **Маршрутизация** — правила выбора модели/инструмента/субагента по типу задачи (триггеры).
-5. **Верификация результата** — требование физически проверять (ls/cat/grep после записи).
-6. **Память и контекст** — когда /compact, как писать в память, политика истечения.
-7. **Безопасность/автономность** — Autonomy Matrix: что само, что через подтверждение.
-8. **SOP** — пошаговые алгоритмы для частых задач (с путями и форматами).
-9. **Learned Patterns** — механизм записи уроков из реальных сессий.
-10. **Поддерживаемость** — разделение постоянного и временного, нет дублей/противоречий.
-11. **Архитектурная декомпозиция (важнейший)** — тонкое ядро + делегирование (субагенты/скилы/specs по триггеру), ленивая загрузка контекста.
-12. **File Edit Policy** — читать перед правкой, replace/patch вместо перезаписи, стоп при несовпадении.
+1. **Agent identity** — who, for whom, the launch context.
+2. **Owner profile** — stack, language, the main value criterion.
+3. **Anti-cliché** — an explicit list of forbidden phrases/behaviors (specifics > "don't ramble").
+4. **Routing** — rules for choosing the model/tool/subagent by task type (triggers).
+5. **Result verification** — a requirement to physically check (ls/cat/grep after writing).
+6. **Memory and context** — when to /compact, how to write to memory, the expiration policy.
+7. **Safety/autonomy** — Autonomy Matrix: what's done autonomously, what via confirmation.
+8. **SOP** — step-by-step algorithms for frequent tasks (with paths and formats).
+9. **Learned Patterns** — a mechanism for recording lessons from real sessions.
+10. **Maintainability** — separation of permanent and temporary, no duplicates/contradictions.
+11. **Architectural decomposition (the most important)** — a thin core + delegation (subagents/skills/specs by trigger), lazy loading of context.
+12. **File Edit Policy** — read before editing, replace/patch instead of overwrite, stop on mismatch.
 
-Выход: таблица оценок (X/120) → топ-3 слабейших критерия с готовыми markdown-блоками для вставки → вердикт (новичок/рабочий/продвинутый/production-ready). Оценивай по операциональной пользе, не по длине: короткий файл с делегированием > длинный со всем внутри.
+Output: a table of scores (X/120) → the top 3 weakest criteria with ready-to-paste markdown blocks → a verdict (beginner/working/advanced/production-ready). Rate by operational usefulness, not length: a short file with delegation > a long one with everything inside.

@@ -1,27 +1,27 @@
-# IMPLEMENTATION_PLAN: <название>
+# IMPLEMENTATION_PLAN: <name>
 
-Фазы по порядку. Каждая закрывается критериями приёмки (контракт с `/phase-check`).
-Выполняется по скилу `task-loop` (`/next-task`).
+Phases in order. Each is closed by acceptance criteria (the contract with `/phase-check`).
+Executed via the `task-loop` skill (`/next-task`).
 
-## Фаза 0 — Фундамент
-**Задачи:** скелет репо, CI, базовые конвенции (через `/init` под стек).
-**Критерии приёмки:**
-- [ ] <проверяемо: команда/тест/инструкция> — <ожидаемый результат>
+## Phase 0 — Foundation
+**Tasks:** repo skeleton, CI, base conventions (via `/init` for the stack).
+**Acceptance criteria:**
+- [ ] <verifiable: command/test/instruction> — <expected result>
 
-## Фаза 1 — <название>
-**Задачи:**
-1. <задача, 5–15 мин, с путями файлов>
+## Phase 1 — <name>
+**Tasks:**
+1. <task, 5–15 min, with file paths>
 2. <...>
-**Критерии приёмки:**
-- [ ] при <X> происходит <Y> (как проверить: <...>)
+**Acceptance criteria:**
+- [ ] when <X>, <Y> happens (how to verify: <...>)
 - [ ] <...>
 
-## Фаза 2 — <...>
+## Phase 2 — <...>
 ...
 
 ---
 
-Правила:
-- Задача крупнее ~30 мин — разбить на подзадачи в `PROGRESS.md`.
-- Каждое требование `SPECIFICATION` покрыто минимум одним критерием приёмки.
-- Критерий без способа проверки — не критерий.
+Rules:
+- A task larger than ~30 min — break it into subtasks in `PROGRESS.md`.
+- Every `SPECIFICATION` requirement is covered by at least one acceptance criterion.
+- A criterion with no way to verify it is not a criterion.

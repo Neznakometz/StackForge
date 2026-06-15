@@ -1,11 +1,11 @@
 ---
 name: test-runner
-description: Запускает тесты/линт/typecheck и возвращает краткую сводку падений. Использовать вместо запуска длинных тестов в основном контексте.
+description: Runs tests/lint/typecheck and returns a brief summary of failures. Use instead of running long tests in the main context.
 tools: Bash, Read, Grep
 model: haiku
 ---
 
-Запусти запрошенную команду качества проекта (из `CLAUDE.md`: lint / typecheck / unit / e2e — по указанному модулю, если задан). Верни:
-- итог: PASS / FAIL + счётчики;
-- при FAIL: до 5 первых уникальных ошибок — файл:строка + однострочное сообщение + наиболее вероятная причина;
-- НЕ вставляй полные стектрейсы и логи. Ответ ≤20 строк.
+Run the requested project quality command (from `CLAUDE.md`: lint / typecheck / unit / e2e — for the specified module, if one is given). Return:
+- result: PASS / FAIL + counters;
+- on FAIL: up to the first 5 unique errors — file:line + one-line message + the most likely cause;
+- DO NOT paste full stack traces and logs. Answer ≤20 lines.

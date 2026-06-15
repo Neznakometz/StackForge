@@ -1,7 +1,7 @@
 {
   "name": "ui",
   "version": "0.1.0",
-  "description": "Доменный набор для дизайна интерфейсов: архитектура UI, дизайн-система/токены, доступность. Опирается на ядро (design-reviewer). Стек-знания (React, Vue/Nuxt, Tailwind) — knowledge-паками через /init; внешние скилы (frontend-design, shadcn-ui) ставятся отдельно.",
+  "description": "Domain bundle for interface design: UI architecture, design system/tokens, accessibility. Builds on the core (design-reviewer). Stack knowledge (React, Vue/Nuxt, Tailwind) via knowledge packs through /init; external skills (frontend-design, shadcn-ui) are installed separately.",
   "author": {
     "name": "Aleksandr"
   }

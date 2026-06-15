@@ -1,35 +1,35 @@
 ---
 name: cross-model-review
-description: Обязательная перепроверка кода внешней моделью (Codex/ChatGPT и/или Gemini) как независимым ревьюером. Применять на каждой задаче после внутренних ревьюеров и на diff в конце фазы.
+description: Mandatory re-check of the code by an external model (Codex/ChatGPT and/or Gemini) acting as an independent reviewer. Apply on every task after the internal reviewers and on the diff at the end of a phase.
 ---
 
-# Кросс-модельное ревью (внешний «второй мозг»)
+# Cross-model review (external "second brain")
 
-Claude пишет → внешняя модель атакует → Claude арбитрирует. Асимметрия ролей, а не «смержить N ответов». Дёшево (один доп. вызов на задачу), ловит то, что одна модель не видит.
+Claude writes → an external model attacks → Claude arbitrates. An asymmetry of roles, not "merge N answers". Cheap (one extra call per task), catches what a single model doesn't see.
 
-## Механика
+## Mechanics
 
-Оркестратор вызывает внешний CLI напрямую через `Bash` (аутентификация активна заранее). Слэш-команды самих плагинов (`/codex:*`) триггерит только пользователь.
+The orchestrator calls the external CLI directly via `Bash` (authentication is active beforehand). The plugins' own slash commands (`/codex:*`) are triggered only by the user.
 
 **Codex (ChatGPT):**
-- `codex review --commit <SHA>` — один коммит (задача);
-- `codex review --base <ref>` — diff от ref до HEAD (вся фаза/несколько коммитов);
-- `codex review --uncommitted` — рабочее дерево.
-- ВАЖНО: `--commit/--base` НЕ принимают текстовый промпт. Кастомные инструкции — только без скоуп-флага: `codex review "<инструкции>"` (по рабочему дереву).
+- `codex review --commit <SHA>` — a single commit (a task);
+- `codex review --base <ref>` — diff from ref to HEAD (a whole phase / several commits);
+- `codex review --uncommitted` — the working tree.
+- IMPORTANT: `--commit/--base` do NOT accept a text prompt. Custom instructions — only without a scope flag: `codex review "<instructions>"` (over the working tree).
 
-**Gemini (опц., вторая модель):** `gemini` CLI тем же приёмом — передать diff и инструкцию ревью. Включать, когда нужна вторая независимая точка зрения (high-risk изменения).
+**Gemini (optional, second model):** the `gemini` CLI in the same manner — pass it the diff and the review instruction. Enable it when a second independent point of view is needed (high-risk changes).
 
-## Арбитраж (ключевое)
+## Arbitration (the key part)
 
-Вывод внешней модели — это рекомендации СТОРОННЕГО ревьюера, не истина:
-- реальная находка → верни `implementer`'у как замечание (файл:строка);
-- шум/ложноположительное → отбрось с пометкой (как и у `code-reviewer`);
-- артефакты песочницы внешнего тула (например, падение сборки на правах записи) — не дефект кода.
+The external model's output is the recommendations of a THIRD-PARTY reviewer, not the truth:
+- a real finding → return it to the `implementer` as a finding (file:line);
+- noise/false positive → discard with a note (just like with `code-reviewer`);
+- artifacts of the external tool's sandbox (for example, a build failure due to write permissions) — not a code defect.
 
-Не прокидывай весь вывод внешней модели в основной контекст — только отобранные замечания.
+Don't forward the external model's whole output into the main context — only the selected findings.
 
-## Когда обязательно
+## When mandatory
 
-- Каждая задача — после `spec-reviewer` + `code-reviewer`, до `test-runner`.
-- Конец фазы — adversarial-review всего diff фазы (`--base <старт-фазы>`).
-- Технические/деструктивные изменения (auth, деньги, миграции, конкурентность) — обязательно, можно обе модели.
+- Every task — after `spec-reviewer` + `code-reviewer`, before `test-runner`.
+- End of phase — adversarial review of the whole phase diff (`--base <phase-start>`).
+- Technical/destructive changes (auth, money, migrations, concurrency) — mandatory, both models allowed.

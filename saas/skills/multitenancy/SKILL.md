@@ -1,13 +1,13 @@
 ---
 name: multitenancy
-description: Мультитенантная изоляция данных в SaaS — скоуп по tenant/workspace, защита от утечки между арендаторами. Применять при работе с БД, запросами и доступом к данным.
+description: Multi-tenant data isolation in SaaS — scoping by tenant/workspace, protection against cross-tenant leakage. Apply when working with the database, queries, and data access.
 ---
 
-# Мультитенантность
+# Multi-tenancy
 
-- **Каждый запрос к данным скоупится по тенанту** (`workspace_id`/`tenant_id`/`owner_id`) из auth-контекста. Запрос без скоупа — ошибка ревью и критичная уязвимость (утечка чужих данных).
-- **Tenant из контекста, не из входа.** Идентификатор арендатора берётся из проверенной сессии/токена, НЕ из тела/параметров запроса (иначе IDOR).
-- **Колонка + индекс.** Каждая таблица с данными арендатора имеет tenant-колонку + индекс по ней (см. core-скил `contracts`).
-- **Защита по умолчанию.** Лучше — механизм, делающий скоуп автоматическим (global scope/RLS/middleware), чем ручной `where` в каждом запросе. Ручной скоуп легко забыть.
-- **Кросс-тенантные операции** (админка, аналитика) — явные, отдельные, с аудитом; не общий путь.
-- **Тесты:** на каждый защищённый ресурс — тест «арендатор A не видит данные арендатора B».
+- **Every data query is scoped by tenant** (`workspace_id`/`tenant_id`/`owner_id`) from the auth context. A query without a scope is a review error and a critical vulnerability (leaking someone else's data).
+- **Tenant from the context, not from the input.** The tenant identifier is taken from the verified session/token, NOT from the request body/params (otherwise IDOR).
+- **Column + index.** Every table with tenant data has a tenant column + an index on it (see the core `contracts` skill).
+- **Secure by default.** Prefer a mechanism that makes scoping automatic (global scope/RLS/middleware) over a manual `where` in every query. A manual scope is easy to forget.
+- **Cross-tenant operations** (admin panel, analytics) — explicit, separate, audited; not the common path.
+- **Tests:** for every protected resource — a "tenant A cannot see tenant B's data" test.

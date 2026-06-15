@@ -1,71 +1,77 @@
 ---
-description: Стек-осознанный скаффолд проекта — спрашивает тип и стек (мультивыбор), собирает CLAUDE.md из knowledge-паков, инициализирует память и спеку.
+description: Stack-aware project scaffold — asks for the type and stack (multi-select), assembles CLAUDE.md from knowledge packs, initializes memory and the spec.
 ---
 
-# /init — развернуть Claud Framework в проекте
+# /init — deploy the StackForge in a project
 
-Ты разворачиваешь рабочую среду агента под КОНКРЕТНЫЙ проект и стек. Цель —
-чтобы дальше агент работал качественно с первого дня: знал правила стека, имел
-память и процесс. НЕ пиши код проекта на этом шаге — только настраиваешь среду.
+You set up the agent's working environment for a SPECIFIC project and stack. The goal
+is for the agent to work well from day one onward: knowing the stack's rules, having
+memory and a process. Do NOT write the project's code at this step — only configure the environment.
 
-## Шаг 1. Определи контекст
+## Step 1. Determine the context
 
-- greenfield (пустой репо) или brownfield (есть код)? Для brownfield — быстро
-  просканируй `package.json`/`pubspec.yaml`/`*.csproj`/`go.mod` и предложи
-  уже определённый стек как дефолт в опросе.
-- Есть ли `SPECIFICATION.md` / `CLAUDE.md`? Если да — спроси, обновляем или с нуля.
+- greenfield (empty repo) or brownfield (has code)? For brownfield — quickly
+  scan `package.json`/`pubspec.yaml`/`*.csproj`/`go.mod` and offer
+  the already-detected stack as the default in the questionnaire.
+- Is there a `SPECIFICATION.md` / `CLAUDE.md`? If so — ask whether we're updating or starting from scratch.
 
-## Шаг 2. Опрос (мультивыбор)
+## Step 2. Questionnaire (multi-select)
 
-Задай пользователю вопросы. КАЖДЫЙ — с возможностью выбрать несколько вариантов
-и с пунктом «другое (впишу сам)». Предложи пресет **«наш текущий стек»** первым,
-если он есть в `knowledge/presets/`.
+Ask the user the questions. EACH one — with the ability to pick several options
+and with an "other (I'll type it in)" item. Offer the **"our current stack"** preset first,
+if it exists in `knowledge/presets/`.
 
-1. **Тип проекта** (мультивыбор): SaaS/бэкенд · UI/дизайн · Игры · Мобайл ·
-   Аналитика/research · Spec-prep (idea→спека).
-2. **Язык(и)**: TypeScript · Dart · Swift · Kotlin · Python · Go · C#/Unity · …
-3. **Фреймворк(и)**: Next.js · NestJS · Flutter · React Native · SwiftUI ·
+1. **Project type** (multi-select): SaaS/backend · UI/design · Games · Mobile ·
+   Analytics/research · Spec-prep (idea→spec).
+2. **Language(s)**: TypeScript · Dart · Swift · Kotlin · Python · Go · C#/Unity · …
+3. **Framework(s)**: Next.js · NestJS · Flutter · React Native · SwiftUI ·
    Jetpack Compose · Unity · …
-4. **Данные/инфра** (если релевантно): Postgres · Drizzle · Redis · BullMQ ·
+4. **Data/infra** (if relevant): Postgres · Drizzle · Redis · BullMQ ·
    S3/R2 · Firebase · …
-5. **Стейт/архитектура** (если мобайл/фронт): Riverpod · Bloc · Redux · …
-6. **Глубина памяти**: L1+L2 (по умолчанию) · +L3 durable (SQLite).
+5. **State/architecture** (if mobile/frontend): Riverpod · Bloc · Redux · …
+6. **Memory depth**: L1+L2 (the default, in the core) · +L3 durable / rolling log / RAG → the `storage` set (offer to install `/plugin install storage@stackforge` if persistent memory or RAG is needed).
 
-Если стек однозначен из контекста (например, мобайл → Flutter+Riverpod) —
-подтверди одним вопросом, не гоняй весь опрос.
+If the stack is unambiguous from the context (for example, mobile → Flutter+Riverpod) —
+confirm with a single question, don't run the whole questionnaire.
 
-## Шаг 3. Собери CLAUDE.md из knowledge-паков
+## Step 3. Assemble CLAUDE.md from the knowledge packs
 
-Для каждой выбранной технологии прочитай `knowledge/<tech>/rules.md` (и
-`knowledge/presets/<name>.md` для пресета). Собери `CLAUDE.md` проекта из секций:
+For each chosen technology, read `knowledge/<tech>/rules.md` (and
+`knowledge/presets/<name>.md` for a preset). Assemble the project's `CLAUDE.md` from sections:
 
-- **Идентичность и стек** — кто агент, какой стек, ссылки на спеку.
-- **Жёсткие правила** — склей из выбранных паков (типы/контракты, безопасность,
-  слои, запреты). При конфликте паков (напр. Bloc vs Riverpod) — НЕ склеивай оба,
-  спроси пользователя, какой оставить.
-- **Процесс** — task-loop, кросс-модельное ревью, критерии приёмки фаз.
-- **Память** — выбранные слои.
-- **Path-scoped rules** — пропиши пути под стек (`lib/features/**`, `apps/api/**` …).
+- **Identity and stack** — who the agent is, what stack, references to the spec.
+- **Hard rules** — glue together from the chosen packs (types/contracts, security,
+  layers, prohibitions). On a pack conflict (e.g. Bloc vs Riverpod) — do NOT glue both,
+  ask the user which to keep.
+- **Process** — task-loop, cross-model review, phase acceptance criteria.
+- **Memory** — the chosen layers.
+- **Path-scoped rules** — write paths for the stack (`lib/features/**`, `apps/api/**` …).
 
-Не дублируй: правила, уже покрытые скилами, оставляй ссылкой, а не копией.
-Держи `CLAUDE.md` ≤ ~150 строк (ядро тонкое; детали — в скилах/specs по триггеру).
+Don't duplicate: rules already covered by skills stay as a reference, not a copy.
+Keep `CLAUDE.md` ≤ ~150 lines (the core is thin; details — in skills/specs by trigger).
 
-## Шаг 4. Скаффолд
+## Step 4. Scaffold
 
-- `PROGRESS.md` — пустой журнал (≤50 строк, читать первым каждую сессию).
-- `docs/decisions/` — папка ADR + README с форматом.
-- Для greenfield с типом «Spec-prep» — заготовки `SPECIFICATION.md`,
-  `DESIGN_SPEC.md`, `IMPLEMENTATION_PLAN.md` по шаблону.
-- `.claude/settings.json` — скопируй шаблон `core/templates/settings.json`
-  (безопасные permissions + `codex review`/`gemini` для кросс-модельного ревью)
-  и допиши stack-специфичные команды качества (lint/test/build под выбранный стек).
+- `PROGRESS.md` — an empty journal (≤50 lines, read it first every session).
+- `docs/decisions/` — an ADR folder + a README with the format.
+- For greenfield with the "Spec-prep" type — `SPECIFICATION.md`,
+  `DESIGN_SPEC.md`, `IMPLEMENTATION_PLAN.md` stubs from the template.
+- `.claude/settings.json` — copy the `core/templates/settings.json` template
+  (safe permissions + `codex review`/`gemini` for cross-model review)
+  and add the stack-specific quality commands (lint/test/build for the chosen stack).
+  For mobile — merge in `mobile/templates/settings.json` (the toolchain CLI).
+- `.vscode/extensions.json` (optional, if you work in VSCode) — recommend
+  the language extensions for the chosen stack so that Claude Code in VSCode gets
+  LSP diagnostics without extra runs: Dart-Code.dart-code+flutter (Flutter),
+  dbaeumer.vscode-eslint+esbenp.prettier (JS/TS), Vue.volar (Vue/Nuxt),
+  ms-python.python+charliermarsh.ruff (Django), bmewburn.vscode-intelephense-client (Laravel).
 
-## Шаг 5. Активируй домен
+## Step 5. Activate the domain
 
-Подскажи команду установки доменного плагина под выбранный тип
-(`/plugin install mobile@claud-framework` и т.д.) и какие скилы включатся.
+Suggest the install command for the domain plugin for the chosen type
+(`/plugin install mobile@stackforge` etc.) and which skills will turn on.
 
-## Шаг 6. Проверка
+## Step 6. Verification
 
-Перечисли: какой стек зафиксирован, какие паки подгружены, какие файлы созданы,
-что ставить дальше. Verify: `ls` созданных файлов — не доверяй на слово.
+List: which stack is fixed, which packs were loaded, which files were created,
+what to install next. Verify: `ls` the created files — don't take it on faith.

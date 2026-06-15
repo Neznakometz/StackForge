@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// PreCompact: напоминание сохранить прогресс до сжатия контекста.
-// Без сети, без побочных эффектов. Всегда exit 0.
+// PreCompact: a reminder to save progress before context compaction.
+// No network, no side effects. Always exit 0.
 "use strict";
 process.stdout.write(
-  "[Напоминание перед /compact] Зафиксируй прогресс: обнови PROGRESS.md " +
-    "(задача, статус, коммит) и при необходимости сделай /checkpoint. " +
-    "Сожми только историю диалога, факты прогресса сохрани в файлы.\n"
+  "[Reminder before /compact] Record progress: update PROGRESS.md " +
+    "(task, status, commit) and run /checkpoint if needed. " +
+    "Compact only the conversation history; persist progress facts to files.\n"
 );
 process.exit(0);

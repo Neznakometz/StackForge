@@ -1,22 +1,22 @@
 ---
 name: contracts
-description: Порядок изменения API-контрактов, схем БД и UI-токенов. Применять при любом изменении DTO, таблиц или внешнего вида.
+description: The order for changing API contracts, DB schemas, and UI tokens. Apply for any change to DTOs, tables, or appearance.
 ---
 
-# Контракты
+# Contracts
 
 API / DTO:
-1. Сначала схема в едином месте (single source of truth — напр. `packages/shared`), типы выводятся из схемы, не дублируются.
-2. Затем сервер (валидация запроса и ответа схемой), затем клиент.
-3. Изменил схему — Grep по всем использованиям, обнови все стороны в одном коммите.
+1. First the schema in a single place (single source of truth — e.g. `packages/shared`), types are derived from the schema, not duplicated.
+2. Then the server (request and response validation by the schema), then the client.
+3. Changed the schema — Grep over all usages, update all sides in a single commit.
 
-БД:
-- Только через миграции (drizzle-kit / Prisma / Alembic — по стеку), в одном PR с кодом. Ручной SQL в проде — нельзя.
-- Мультитенантные таблицы обязаны иметь tenant/owner-колонку + индекс по ней.
+DB:
+- Only via migrations (drizzle-kit / Prisma / Alembic — depending on the stack), in the same PR as the code. Manual SQL in prod — not allowed.
+- Multitenant tables must have a tenant/owner column + an index on it.
 
 UI:
-- Цвета/отступы/радиусы — только токены дизайн-системы. Перед созданием компонента проверь `scout`'ом, нет ли его уже.
-- Новые строки UI — сразу во все словари i18n.
+- Colors/spacing/radii — only design-system tokens. Before creating a component, check with `scout` whether it already exists.
+- New UI strings — immediately into all i18n dictionaries.
 
-Промпты LLM (если есть):
-- Только отдельные файлы (`prompts/*.md`), не строки в коде; изменение промпта — отдельный коммит (для отката).
+LLM prompts (if any):
+- Only separate files (`prompts/*.md`), not strings in code; a prompt change — a separate commit (for rollback).

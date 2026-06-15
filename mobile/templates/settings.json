@@ -1,0 +1,29 @@
+{
+  "$comment": "Permissions template for the mobile toolchain. /init copies it to .claude/settings.json (merging with the core template) for Flutter projects. Allows the Flutter/Android/iOS CLI so the agent can build/run without friction. Dangerous ones go in deny.",
+  "permissions": {
+    "allow": [
+      "Bash(flutter:*)",
+      "Bash(dart:*)",
+      "Bash(adb devices)",
+      "Bash(adb -s :*)",
+      "Bash(adb logcat:*)",
+      "Bash(emulator -list-avds)",
+      "Bash(xcrun simctl list:*)",
+      "Bash(xcrun simctl boot:*)",
+      "Bash(xcrun simctl io booted screenshot:*)",
+      "Bash(pod install)",
+      "Bash(pod repo update)"
+    ],
+    "deny": [
+      "Read(**/key.properties)",
+      "Read(**/*.keystore)",
+      "Read(**/*.jks)",
+      "Read(**/*.p12)",
+      "Read(**/*.mobileprovision)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Bash(adb uninstall:*)",
+      "Bash(xcrun simctl erase:*)"
+    ]
+  }
+}

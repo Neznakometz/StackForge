@@ -1,7 +1,7 @@
 {
   "name": "mobile",
   "version": "0.1.0",
-  "description": "Доменный набор для мобильной разработки на Flutter + Riverpod 3. Архитектура layered/MVVM, тулинг-заборы (riverpod_lint, dart analyze/format), тестирование, безопасность, доступность, Unity→Flutter миграция и релиз в сторы. Садится поверх ядра Claud Framework.",
+  "description": "Domain bundle for mobile development on Flutter + Riverpod 3. Layered/MVVM architecture, tooling guardrails (riverpod_lint, dart analyze/format), testing, security, accessibility, Unity→Flutter migration, and store release. Sits on top of the StackForge core.",
   "author": {
     "name": "Aleksandr"
   }

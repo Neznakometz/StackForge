@@ -1,30 +1,30 @@
 ---
 name: token-economy
-description: Правила экономии контекста/токенов при работе агентов. Применять всегда, особенно при чтении документации и больших файлов.
+description: Rules for saving context/tokens while agents work. Apply always, especially when reading documentation and large files.
 ---
 
-# Экономия токенов
+# Token economy
 
-Чтение:
-- НИКОГДА не читай большие документы (спека, дизайн-спека) целиком. Используй карту документации из CLAUDE.md: Grep по заголовку секции → Read с offset/limit.
-- Вопросы «где/как/есть ли в репо» — агенту `scout` (haiku), не в основной контекст.
-- Большие файлы кода: сначала Grep по символу, читай только нужный диапазон. Если есть индекс (codegraph/LSP) — запрос к нему вместо слепого grep.
-- Не перечитывай файл после своего Edit — инструмент сам падает при ошибке.
+Reading:
+- NEVER read large documents (the spec, the design spec) in full. Use the documentation map from CLAUDE.md: Grep by the section heading → Read with offset/limit.
+- "Where/how/is there in the repo" questions — to the `scout` agent (haiku), not into the main context.
+- Large code files: first Grep by symbol, read only the needed range. If there is an index (codegraph/LSP) — query it instead of blind grep.
+- Don't re-read a file after your own Edit — the tool itself fails on error.
 
-Сабагенты:
-- Свежий узкий контекст: текст задачи + ссылки на секции. Не передавай историю диалога.
-- Отчёты сабагентов лимитированы их промптами; вернул простыню — это баг, требуй краткости.
-- Длинные логи тестов — через `test-runner` (haiku), он сжимает.
+Subagents:
+- A fresh, narrow context: the task text + references to sections. Don't pass the dialog history.
+- Subagent reports are limited by their prompts; returned a wall of text — that's a bug, demand brevity.
+- Long test logs — through `test-runner` (haiku), it compresses them.
 
-Генерация:
-- Edit точечно, не Write всего файла заново.
-- Не вставляй содержимое файлов в отчёты и коммит-сообщения.
-- Boilerplate (компоненты, конфиги) — через CLI-генераторы, а не печатай руками.
+Generation:
+- Edit pointwise, don't Write the whole file again.
+- Don't paste file contents into reports and commit messages.
+- Boilerplate (components, configs) — via CLI generators, don't type it by hand.
 
-Сессии:
-- PROGRESS.md — единственный источник «где мы»; новая сессия начинает с него (≤50 строк), а не с перечитывания документов.
-- /compact между фазами; не тащи одну сессию через несколько фаз.
+Sessions:
+- PROGRESS.md is the single source of "where we are"; a new session starts from it (≤50 lines), not from re-reading documents.
+- /compact between phases; don't drag a single session across several phases.
 
-> Доп. усиление (опционально, отдельные плагины): `ponytail-safe` (меньше кода),
-> `ponytail-terse` (меньше исходящей прозы), `codegraph-nav` (меньше чтения на поиск),
-> `bash-output-compression` (сжатие вывода команд). Покрывают 4 разные статьи расхода токенов.
+> Additional reinforcement (optional, separate plugins): `ponytail-safe` (less code),
+> `ponytail-terse` (less outgoing prose), `codegraph-nav` (less reading per search),
+> `bash-output-compression` (compression of command output). They cover 4 different token cost items.

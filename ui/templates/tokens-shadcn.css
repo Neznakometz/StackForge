@@ -1,0 +1,61 @@
+/* Token bridge: our semantic tokens → the names shadcn expects
+   (shadcn-vue and shadcn/ui share one nomenclature). Import AFTER tokens.css.
+   shadcn components (bg-background, text-muted-foreground, bg-primary, border-border…)
+   inherit our palette. One block works for light and dark, because it references
+   our aliases (--surface/--text/…), which switch themselves in .dark.
+
+   Watch the name collision: in shadcn `--accent` is a muted hover surface,
+   NOT the brand color. The brand in shadcn is `--primary` (= our --accent). */
+
+:root {
+  --background: var(--surface);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+
+  --primary: var(--accent);              /* brand color */
+  --primary-foreground: var(--accent-fg);
+  --secondary: var(--surface-muted);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface-muted);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--surface-muted);        /* shadcn-accent = hover surface, not brand */
+  --accent-foreground: var(--text);
+
+  --destructive: var(--danger-500);
+  --destructive-foreground: #ffffff;
+
+  --border: var(--border);
+  --input: var(--border);
+  --ring: var(--focus-ring);
+
+  --radius: var(--radius-md);
+}
+
+/* Tailwind v4: expose the variables to utilities (bg-background, text-foreground…).
+   Put this in a file that Tailwind imports. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+}

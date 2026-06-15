@@ -1,7 +1,7 @@
 {
   "name": "analytics",
   "version": "0.1.0",
-  "description": "Доменный набор для аналитики и ресёрча: fusion-генерация (Claude+Codex+Gemini → синтез), глубокий многоисточниковый research, сборка отчётов. Опирается на ядро и кросс-модельное ревью.",
+  "description": "Domain bundle for analytics and research: fusion generation (Claude+Codex+Gemini → synthesis), deep multi-source research, report assembly. Builds on the core and cross-model review.",
   "author": {
     "name": "Aleksandr"
   }

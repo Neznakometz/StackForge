@@ -1,14 +1,15 @@
 ---
 name: design-system
-description: Дизайн-система и токены для веб-UI — цвета, типографика, отступы, темы, компоненты. Применять при стилизации, создании компонентов и работе с темами.
+description: Design system and tokens for web UI — colours, typography, spacing, themes, components. Apply when styling, building components, and working with themes.
 ---
 
-# Дизайн-система
+# Design System
 
-- **Только токены.** Цвета, отступы, радиусы, тени, типографика, длительности — из токенов дизайн-системы, не магические значения в компонентах. Хардкод hex/px — ошибка ревью.
-- **Темы.** Если поддерживается dark — каждый компонент имеет вариант; проверяй оба.
-- **Проверь, нет ли уже.** Перед созданием компонента — `scout` по библиотеке компонентов; не плоди дубли.
-- **Состояния компонента** консистентны с дизайн-спекой: default/hover/pressed/disabled/loading.
-- **Контраст и размеры** — по доступности (скил `web-a11y`).
+- **Tokens only.** Colours, spacing, radii, shadows, typography, durations — from the design system's tokens, not magic values in components. Hardcoded hex/px is a review bug.
+- **Themes.** If dark mode is supported, every component has a variant; check both.
+- **Check whether it already exists.** Before creating a component, `scout` the component library; don't breed duplicates.
+- **Component states** consistent with the design spec: default/hover/pressed/disabled/loading.
+- **Contrast and sizes** follow accessibility (the `web-a11y` skill).
+- **Start from ready-made tokens** — `ui/templates/tokens.css` + the `design-tokens` skill; numeric scales — `visual-craft`.
 
-> Внешние установимые скилы усиливают этот слой: `shadcn-ui` (project-aware генерация из `components.json`), `web-design-guidelines` (аудит UI по 100+ правилам), `canvas-design` (постеры/обложки/инфографика кодом). Ставятся отдельно через `npx skills` / `/plugin`.
+> External installable skills reinforce this layer: `shadcn-ui` (project-aware generation from `components.json`), `web-design-guidelines` (UI audit against 100+ rules), `canvas-design` (posters/covers/infographics in code). Installed separately via `npx skills` / `/plugin`.

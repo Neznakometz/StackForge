@@ -1,0 +1,8 @@
+{
+  "name": "storage",
+  "version": "0.1.0",
+  "description": "Domain bundle about storage and memory: L3 durable memory (SQLite + agent-memory.md, /dream, /warmup, /memory-gc), rolling-log (Layer 0.5), RAG (chunking/embeddings/vector store), long-context strategies (index vs RAG vs recursion/RLM vs grep). Extends the core memory (L1+L2).",
+  "author": {
+    "name": "Aleksandr"
+  }
+}
