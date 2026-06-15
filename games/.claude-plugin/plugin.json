@@ -1,0 +1,8 @@
+{
+  "name": "games",
+  "version": "0.1.0",
+  "description": "Доменный набор для геймдева: GDD и дизайн систем, выбор и настройка движка (Godot/Unity/Unreal), агент game-designer. Урезанная иерархия студии поверх ядра — берёт структуру из Claude Code Game Studios, без монолита из 49 агентов.",
+  "author": {
+    "name": "Aleksandr"
+  }
+}

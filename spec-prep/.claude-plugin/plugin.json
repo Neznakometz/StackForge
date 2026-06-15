@@ -1,0 +1,8 @@
+{
+  "name": "spec-prep",
+  "version": "0.1.0",
+  "description": "Подготовка спецификаций из идеи: brainstorm → конституция → спека → clarify → analyze. Выдаёт SPECIFICATION/DESIGN_SPEC/IMPLEMENTATION_PLAN с проверяемыми критериями приёмки — вход для любого доменного набора. Запускается один раз до кода.",
+  "author": {
+    "name": "Aleksandr"
+  }
+}

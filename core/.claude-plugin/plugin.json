@@ -1,0 +1,8 @@
+{
+  "name": "core",
+  "version": "0.1.0",
+  "description": "Ядро Claud Framework. Subagent-driven процесс с обязательным кросс-модельным ревью (Codex/Gemini CLI), трёхслойная память, экономия токенов и стек-осознанный /init, собирающий CLAUDE.md под выбранный стек из knowledge-паков.",
+  "author": {
+    "name": "Aleksandr"
+  }
+}

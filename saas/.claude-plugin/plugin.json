@@ -1,0 +1,8 @@
+{
+  "name": "saas",
+  "version": "0.1.0",
+  "description": "Доменный набор для SaaS/бэкенда: дизайн API и контрактов, фоновые задачи в воркерах, мультитенантность. Опирается на ядро (contracts, task-loop, кросс-модельное ревью). Стек-знания (Postgres, Laravel, Django, NestJS) подключаются knowledge-паками через /init.",
+  "author": {
+    "name": "Aleksandr"
+  }
+}

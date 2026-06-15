@@ -1,0 +1,25 @@
+{
+  "$comment": "Шаблон проектных настроек. /init копирует в .claude/settings.json и дополняет stack-специфичными командами (lint/test/build под конкретный стек). Опасное — в deny.",
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(codex review:*)",
+      "Bash(codex --version)",
+      "Bash(gemini:*)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/secrets/**)",
+      "Bash(git push --force:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  }
+}

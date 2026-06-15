@@ -1,0 +1,136 @@
+{
+  "$comment": "Реестр knowledge-паков. Единый источник правды для /init (сборка), /add-stack (расширение), /update-knowledge (обновление). status: planned | ready | stale. last_verified — дата последней сверки rules.md с официальными доками.",
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "id": "php-laravel",
+      "category": "backend",
+      "targets": "PHP 8.1-8.5 / Laravel 11-13",
+      "sources": ["https://laravel.com/docs"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "python-django",
+      "category": "backend",
+      "targets": "Python 3 / Django / DRF",
+      "sources": ["https://docs.djangoproject.com", "https://www.django-rest-framework.org"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "node-nestjs",
+      "category": "backend",
+      "targets": "Node.js / NestJS",
+      "sources": ["https://docs.nestjs.com"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "data-sql",
+      "category": "backend",
+      "targets": "PostgreSQL / MySQL",
+      "sources": ["https://www.postgresql.org/docs", "https://dev.mysql.com/doc"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "data-cache",
+      "category": "backend",
+      "targets": "Redis / Memcached",
+      "sources": ["https://redis.io/docs"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "data-search-olap",
+      "category": "backend",
+      "targets": "ElasticSearch / ClickHouse",
+      "sources": ["https://www.elastic.co/guide", "https://clickhouse.com/docs"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "frontend-react",
+      "category": "frontend",
+      "targets": "React + TypeScript",
+      "sources": ["https://react.dev"],
+      "conflictsWith": ["frontend-vue-nuxt"],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "frontend-vue-nuxt",
+      "category": "frontend",
+      "targets": "Vue 3 / Nuxt 3 + TypeScript",
+      "sources": ["https://vuejs.org/guide", "https://nuxt.com/docs"],
+      "conflictsWith": ["frontend-react"],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "frontend-styling",
+      "category": "frontend",
+      "targets": "Tailwind CSS / SCSS, Vite / Webpack",
+      "sources": ["https://tailwindcss.com/docs", "https://vite.dev"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "devops-containers",
+      "category": "devops",
+      "targets": "Docker / K8s / Traefik",
+      "sources": ["https://docs.docker.com", "https://kubernetes.io/docs", "https://doc.traefik.io"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "devops-ci-infra",
+      "category": "devops",
+      "targets": "GitLab CI / Ansible / Amazon VPS",
+      "sources": ["https://docs.gitlab.com", "https://docs.ansible.com"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "devops-observability",
+      "category": "devops",
+      "targets": "Grafana / Loki / Sentry",
+      "sources": ["https://grafana.com/docs", "https://docs.sentry.io"],
+      "conflictsWith": [],
+      "status": "planned",
+      "version": "0.0.0",
+      "last_verified": null
+    },
+    {
+      "id": "flutter-riverpod",
+      "category": "mobile",
+      "targets": "Flutter / Dart, Riverpod 3 + Freezed",
+      "sources": ["https://docs.flutter.dev", "https://riverpod.dev", "https://dart.dev/effective-dart"],
+      "conflictsWith": ["flutter-bloc"],
+      "status": "ready",
+      "version": "1.0.0",
+      "last_verified": "2026-06-15"
+    }
+  ]
+}

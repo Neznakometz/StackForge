@@ -1,0 +1,52 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claud-framework",
+  "description": "Тонкое ядро + доменные наборы для быстрого, стек-осознанного старта проектов в Claude Code.",
+  "owner": {
+    "name": "Aleksandr"
+  },
+  "plugins": [
+    {
+      "name": "core",
+      "description": "Ядро: subagent-driven процесс (task-loop), кросс-модельное ревью (Codex/Gemini), память, экономия токенов, стек-осознанный /init.",
+      "source": "./core",
+      "category": "productivity"
+    },
+    {
+      "name": "mobile",
+      "description": "Flutter + Riverpod 3: архитектура layered/MVVM, тулинг-заборы (riverpod_lint, dart analyze/format), тестирование, безопасность/доступность, Unity→Flutter миграция, релиз в сторы.",
+      "source": "./mobile",
+      "category": "development"
+    },
+    {
+      "name": "spec-prep",
+      "description": "idea → спека: brainstorm, конституция, SPECIFICATION/DESIGN_SPEC/IMPLEMENTATION_PLAN с критериями приёмки. Вход для любого домена.",
+      "source": "./spec-prep",
+      "category": "productivity"
+    },
+    {
+      "name": "saas",
+      "description": "Бэкенд/веб: дизайн API и контрактов, фоновые задачи, мультитенантность. Стек-знания через /init.",
+      "source": "./saas",
+      "category": "development"
+    },
+    {
+      "name": "ui",
+      "description": "Дизайн интерфейсов: архитектура UI, дизайн-система/токены, доступность (WCAG).",
+      "source": "./ui",
+      "category": "development"
+    },
+    {
+      "name": "games",
+      "description": "Геймдев: GDD и игровые системы, выбор движка (Godot/Unity/Unreal), агент game-designer. Урезанная иерархия студии.",
+      "source": "./games",
+      "category": "development"
+    },
+    {
+      "name": "analytics",
+      "description": "Аналитика/ресёрч: fusion-генерация (Claude+Codex+Gemini), многоисточниковый research, сборка отчётов.",
+      "source": "./analytics",
+      "category": "productivity"
+    }
+  ]
+}
