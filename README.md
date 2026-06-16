@@ -17,6 +17,7 @@
   <a href="#-why">Why</a> •
   <a href="#-install">Install</a> •
   <a href="#-the-core">Core</a> •
+  <a href="#-safety">Safety</a> •
   <a href="#-the-sets">Sets</a> •
   <a href="#-stack-aware-init">/init</a> •
   <a href="#-extend--update">Extend</a>
@@ -32,7 +33,7 @@
 
 | **Sets** | **Agents** | **Skills** | **Commands** | **Knowledge packs** | **Hooks** |
 |:--------:|:----------:|:----------:|:------------:|:-------------------:|:---------:|
-| **8** | **12** | **32** | **10** | **13** | **4** |
+| **8** | **12** | **32** | **10** | **13** | **5** |
 
 <sub>A thin core + 7 domain sets · every knowledge pack grounded in official docs with a verification date</sub>
 
@@ -131,6 +132,17 @@ Discipline + optional plugins `ponytail-safe`,
 **Agents (7):** implementer · spec-reviewer · code-reviewer · design-reviewer · security-auditor · test-runner · scout
 **Skills (7):** task-loop · cross-model-review · tdd · contracts · token-economy · memory · prompt-audit
 **Commands:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge
+
+---
+
+## 🛡 Safety
+
+Two layers, on by default:
+
+- **Safe permissions** — `/init` scaffolds `.claude/settings.json` with a deny-list (no `.env`/secret reads, no force-push, no `rm -rf /`, no `curl`/`wget`) plus an allow-list for the stack's build/test commands.
+- **`bash-guard`** — a `PreToolUse(Bash)` hook that inspects every shell command **before** permission rules run and blocks destructive / network / arbitrary-code ones: `rm` of `/`·`~`, `git push --force`, `reset --hard`, `clean`, `sudo`, `chown`, `curl|sh` pipes, and arbitrary `npx`/`dlx`/`bunx`. It expresses exceptions a deny-list can't — `rm -rf dist` passes, `rm -rf /` is blocked — and `npx` is allow-listed for trusted tooling (`npx skills`/`shadcn`). Exit 2 = blocked (reason surfaced to the model); fail-open on a parse error so the agent never wedges.
+
+> Heuristics, not a shell parser — a guard against agent mistakes and crude attacks, not an OS boundary. For hard isolation, rely on Claude Code's sandbox. Reviews also run a `security-auditor` agent + external cross-model review on every phase diff.
 
 ---
 
