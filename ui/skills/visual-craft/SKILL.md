@@ -43,4 +43,11 @@ Sources: Refactoring UI, Material 3, Apple HIG, WCAG. The philosophical canon ("
 - A visible focus ring (`:focus-visible`, ≥3:1); not `outline: none` without a replacement. Respect `prefers-reduced-motion`, durations 150–250ms.
 - Real content, not lorem (design for the longest/empty strings: long names, `$0`, `9999+`). Hairline borders — low-contrast.
 
+## Anti-slop checklist (MUST / SHOULD / NEVER)
+Imperative review rules that catch the "AI-generated" look. Token-first; the examples below are Tailwind, adapt to your stack.
+
+- **MUST:** full-height = `100dvh` (`h-dvh`), not `100vh` (mobile URL bar). One accent colour per view. `aria-label` on icon-only buttons. A confirm dialog (e.g. `AlertDialog`) for destructive actions, never a bare button. Visible `:focus-visible` ring.
+- **SHOULD:** `text-balance` on headings, `text-pretty` on body; `tabular-nums` for numbers in tables/timers; a fixed z-index scale (no random `z-[9999]`); square sizing via one token (`size-*`) instead of separate w/h; respect `prefers-reduced-motion`.
+- **NEVER:** purple/indigo gradients as the default "hero" look; glow/neon as an affordance; pure black (`#000`) text/shadows; identical card grids as the only layout; centered long paragraphs; emoji as UI icons; `outline: none` without a replacement.
+
 > A starter token set covering all these scales is `ui/templates/tokens.css` (light+dark, passes AA). See the `design-tokens` skill.

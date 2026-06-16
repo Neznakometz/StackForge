@@ -5,6 +5,8 @@ Format — [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versions by
 ## [Unreleased]
 
 ### Added
+- **Universal install + cross-agent.** `INSTALL.md` (marketplace / local clone / `scripts/install.sh` / `npx skills` / manual + a portability matrix), `scripts/install.sh` (copies skills/agents/commands into `.claude/` without the marketplace — fixes the VS Code plugin friction), and `AGENTS.md` (portable methodology for Cursor/Codex/Gemini/Copilot/Windsurf). Skills are installable cross-agent via `npx skills add Neznakometz/StackForge`.
+- **UI improvements** (from ui-skills.com): new `web-metadata` skill (SEO/Open Graph/Twitter/JSON-LD/canonical — a gap) and an imperative anti-slop MUST/SHOULD/NEVER checklist added to `visual-craft`.
 - **Renamed to StackForge** (from "Claud Framework") to avoid trademark ambiguity with Anthropic's "Claude"; marketplace name `stackforge`, install refs `@stackforge`. Kept the "for Claude Code" tagline + non-affiliation disclaimer.
 - **Legal hygiene:** `CREDITS.md` (attribution for referenced projects, standards, conventions + their licenses) and an Anthropic non-affiliation disclaimer in README/CREDITS. Audit confirmed: no bundled third-party code, no copyleft pulled into MIT, all packs cite sources.
 - **English everywhere.** The whole framework translated to English (all skills, agents, commands, knowledge packs, templates, docs, comments). Memory markers normalized to `permanent`/`important`/`keep`.

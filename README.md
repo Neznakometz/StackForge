@@ -2,12 +2,13 @@
 
 # ⚙️ StackForge
 
-### **Spin up a new project in Claude Code with one command — stack-aware setup, a proven workflow, and cross-model review**
+### **Spin up a new project with one command — stack-aware setup, a proven workflow, and cross-model review. Built for Claude Code, portable to Cursor · Codex · Gemini · Copilot.**
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-0.2.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/built%20for-Claude%20Code-CC785C" alt="Built for Claude Code">
+  <img src="https://img.shields.io/badge/cross--agent-SKILL.md-blue" alt="Cross-agent">
   <img src="https://img.shields.io/badge/knowledge%20packs-doc--grounded-brightgreen" alt="Doc-grounded">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
@@ -31,7 +32,7 @@
 
 | **Sets** | **Agents** | **Skills** | **Commands** | **Knowledge packs** | **Hooks** |
 |:--------:|:----------:|:----------:|:------------:|:-------------------:|:---------:|
-| **8** | **12** | **31** | **10** | **13** | **4** |
+| **8** | **12** | **32** | **10** | **13** | **4** |
 
 <sub>A thin core + 7 domain sets · every knowledge pack grounded in official docs with a verification date</sub>
 
@@ -74,6 +75,13 @@ Every new project means installing skills again, writing rules again, wiring up 
 # add a domain set
 /plugin install saas@stackforge
 ```
+
+**Marketplace awkward in the VS Code extension?** Install without it — clone and run
+`bash scripts/install.sh /path/to/project` (copies skills/agents/commands into `.claude/`).
+
+**Other agents (Cursor · Codex · Gemini · Copilot · Windsurf):** skills are portable —
+`npx skills add Neznakometz/StackForge`; drop `AGENTS.md` at your repo root for the
+methodology. Full guide + portability matrix: **[INSTALL.md](INSTALL.md)**.
 
 ---
 
@@ -211,5 +219,5 @@ StackForge/
 ---
 
 <div align="center">
-<sub>MIT · built for Claude Code · knowledge packs grounded in official docs (verified 2026-06-15)</sub>
+<sub>MIT · built for Claude Code, portable to Cursor/Codex/Gemini · knowledge packs grounded in official docs (verified 2026-06-15)</sub>
 </div>
