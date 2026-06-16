@@ -50,12 +50,12 @@
 
 ## 🎯 Pourquoi
 
-Chaque nouveau projet signifie réinstaller les skills, réécrire les règles, reconfigurer un processus. StackForge le fait en **une seule commande** : un **core** léger est toujours installé, `/init` demande votre stack et assemble le `CLAUDE.md` correspondant, et un **set de domaine** ajoute la spécialisation.
+Chaque nouveau projet signifie réinstaller les skills, réécrire les règles, reconfigurer un processus. StackForge le fait en **une seule commande** : un **core** léger est toujours installé, `/init` demande votre stack et assemble le `AGENTS.md` correspondant (multi-agent, avec un import `CLAUDE.md` pour Claude Code), et un **set de domaine** ajoute la spécialisation.
 
 ```
 /plugin install core  →  /init (asks for the stack)  →  /plugin install <domain>
         │                        │                            │
-   capability               CLAUDE.md for the stack       domain
+   capability               AGENTS.md for the stack       domain
  (agents/skills/            from knowledge packs          skills/agents
   commands/hooks)
 ```
@@ -187,7 +187,7 @@ Chaque pack est `rules.md` (règles tirées de la doc) + `sources.md` (sources +
 
 1. Détecte greenfield/brownfield (scanne `package.json`/`pubspec.yaml`/…).
 2. Demande **(sélection multiple)** : type de projet + composants de la stack. Il existe un preset « notre stack ».
-3. Assemble `CLAUDE.md` à partir des packs choisis ; ceux en conflit (React ⊥ Vue, Riverpod ⊥ Bloc) ne sont jamais collés — il pose la question.
+3. Assemble `AGENTS.md` à partir des packs choisis (+ un import `CLAUDE.md` pour Claude Code) ; ceux en conflit (React ⊥ Vue, Riverpod ⊥ Bloc) ne sont jamais collés — il pose la question.
 4. Génère la mémoire (PROGRESS.md), la constitution, la spec, les permissions sûres.
 5. Active les skills de domaine.
 
@@ -241,3 +241,15 @@ StackForge/
 <div align="center">
 <sub>MIT · conçu pour Claude Code, portable vers Cursor/Codex/Gemini · knowledge packs ancrés dans la documentation officielle (vérifié le 2026-06-15)</sub>
 </div>
+
+---
+
+## ⚠️ Avertissement
+
+Non affilié à Anthropic, ni approuvé ni sponsorisé par elle. « Claude » et « Claude Code »
+sont des marques d'Anthropic ; ceci est un projet communautaire indépendant destiné à être
+utilisé avec Claude Code.
+
+Tous les autres noms de produits, logos et marques (Cursor, OpenAI Codex, Google Gemini,
+GitHub Copilot, Flutter, React, Vue et autres) appartiennent à leurs propriétaires respectifs ;
+leur usage ici est nominatif et n'implique aucune affiliation ni approbation. Voir [CREDITS.md](CREDITS.md).

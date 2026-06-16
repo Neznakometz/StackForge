@@ -34,10 +34,11 @@ if it exists in `knowledge/presets/`.
 If the stack is unambiguous from the context (for example, mobile → Flutter+Riverpod) —
 confirm with a single question, don't run the whole questionnaire.
 
-## Step 3. Assemble CLAUDE.md from the knowledge packs
+## Step 3. Assemble AGENTS.md from the knowledge packs
 
 For each chosen technology, read `knowledge/<tech>/rules.md` (and
-`knowledge/presets/<name>.md` for a preset). Assemble the project's `CLAUDE.md` from sections:
+`knowledge/presets/<name>.md` for a preset). Assemble the project's **`AGENTS.md`** — the
+cross-agent rules file (read by Cursor/Codex/Gemini/Copilot) — from sections:
 
 - **Identity and stack** — who the agent is, what stack, references to the spec.
 - **Hard rules** — glue together from the chosen packs (types/contracts, security,
@@ -47,8 +48,12 @@ For each chosen technology, read `knowledge/<tech>/rules.md` (and
 - **Memory** — the chosen layers.
 - **Path-scoped rules** — write paths for the stack (`lib/features/**`, `apps/api/**` …).
 
+Then write a one-line **`CLAUDE.md`** that imports it: `@AGENTS.md` — so Claude Code picks
+it up natively while other agents read `AGENTS.md` directly (single source of truth). For
+Gemini CLI also point `GEMINI.md` at it; for Cursor, `.cursor/rules/` can reference it.
+
 Don't duplicate: rules already covered by skills stay as a reference, not a copy.
-Keep `CLAUDE.md` ≤ ~150 lines (the core is thin; details — in skills/specs by trigger).
+Keep `AGENTS.md` ≤ ~150 lines (the core is thin; details — in skills/specs by trigger).
 
 ## Step 4. Scaffold
 

@@ -50,14 +50,14 @@
 
 ## 🎯 Why
 
-Every new project means installing skills again, writing rules again, wiring up a process again. StackForge does it in **one command**: a thin **core** is always installed, `/init` asks for your stack and assembles `CLAUDE.md` for it, and a **domain set** adds the specialization.
+Every new project means installing skills again, writing rules again, wiring up a process again. StackForge does it in **one command**: a thin **core** is always installed, `/init` asks for your stack and assembles `AGENTS.md` for it (cross-agent, with a `CLAUDE.md` import for Claude Code), and a **domain set** adds the specialization.
 
 ```
 /plugin install core  →  /init (asks for the stack)  →  /plugin install <domain>
         │                        │                            │
-   capability               CLAUDE.md for the stack       domain
+   capability               AGENTS.md for the stack       domain
  (agents/skills/            from knowledge packs          skills/agents
-  commands/hooks)
+  commands/hooks)           (+CLAUDE.md import)
 ```
 
 ### Real benefits
@@ -187,7 +187,7 @@ Each pack is `rules.md` (rules from the docs) + `sources.md` (sources + versions
 
 1. Detects greenfield/brownfield (scans `package.json`/`pubspec.yaml`/…).
 2. Asks **(multi-select)**: project type + stack components. There's an "our stack" preset.
-3. Assembles `CLAUDE.md` from the chosen packs; conflicting ones (React ⊥ Vue, Riverpod ⊥ Bloc) are never glued — it asks.
+3. Assembles `AGENTS.md` from the chosen packs (+ a `CLAUDE.md` import for Claude Code); conflicting ones (React ⊥ Vue, Riverpod ⊥ Bloc) are never glued — it asks.
 4. Scaffolds memory (PROGRESS.md), the constitution, the spec, safe permissions.
 5. Activates the domain skills.
 
@@ -235,6 +235,17 @@ StackForge/
 ├── scripts/validate.sh · .github/workflows/validate.yml
 └── LICENSE · CONTRIBUTING · CHANGELOG · MCP · README
 ```
+
+---
+
+## ⚠️ Disclaimer
+
+Not affiliated with, endorsed by, or sponsored by Anthropic. "Claude" and "Claude Code"
+are trademarks of Anthropic; this is an independent community project for use with Claude Code.
+
+All other product names, logos, and brands (Cursor, OpenAI Codex, Google Gemini, GitHub
+Copilot, Flutter, React, Vue, and others) are the property of their respective owners; their
+use here is nominative and implies no affiliation or endorsement. See [CREDITS.md](CREDITS.md).
 
 ---
 

@@ -50,12 +50,12 @@
 
 ## 🎯 Warum
 
-Jedes neue Projekt bedeutet: Skills erneut installieren, Regeln erneut schreiben, einen Prozess erneut verdrahten. StackForge erledigt das in **einem Befehl**: ein schlanker **Core** ist immer installiert, `/init` fragt nach deinem Stack und stellt dafür die `CLAUDE.md` zusammen, und ein **Domänen-Set** ergänzt die Spezialisierung.
+Jedes neue Projekt bedeutet: Skills erneut installieren, Regeln erneut schreiben, einen Prozess erneut verdrahten. StackForge erledigt das in **einem Befehl**: ein schlanker **Core** ist immer installiert, `/init` fragt nach deinem Stack und stellt dafür die `AGENTS.md` zusammen (agentübergreifend, mit `CLAUDE.md`-Import für Claude Code), und ein **Domänen-Set** ergänzt die Spezialisierung.
 
 ```
 /plugin install core  →  /init (asks for the stack)  →  /plugin install <domain>
         │                        │                            │
-   capability               CLAUDE.md for the stack       domain
+   capability               AGENTS.md for the stack       domain
  (agents/skills/            from knowledge packs          skills/agents
   commands/hooks)
 ```
@@ -187,7 +187,7 @@ Jedes Pack ist `rules.md` (Regeln aus den Docs) + `sources.md` (Quellen + Versio
 
 1. Erkennt Greenfield/Brownfield (scannt `package.json`/`pubspec.yaml`/…).
 2. Fragt **(Mehrfachauswahl)**: Projekttyp + Stack-Komponenten. Es gibt ein „our stack"-Preset.
-3. Stellt `CLAUDE.md` aus den gewählten Packs zusammen; widersprüchliche (React ⊥ Vue, Riverpod ⊥ Bloc) werden niemals zusammengeklebt — es fragt nach.
+3. Stellt `AGENTS.md` aus den gewählten Packs zusammen (+ `CLAUDE.md`-Import für Claude Code); widersprüchliche (React ⊥ Vue, Riverpod ⊥ Bloc) werden niemals zusammengeklebt — es fragt nach.
 4. Erstellt das Gerüst für Gedächtnis (PROGRESS.md), die Verfassung, die Spec, sichere Berechtigungen.
 5. Aktiviert die Domänen-Skills.
 
@@ -241,3 +241,15 @@ StackForge/
 <div align="center">
 <sub>MIT · gebaut für Claude Code, portierbar nach Cursor/Codex/Gemini · Knowledge Packs in offiziellen Docs verankert (verifiziert 2026-06-15)</sub>
 </div>
+
+---
+
+## ⚠️ Haftungsausschluss
+
+Nicht mit Anthropic verbunden, von Anthropic weder unterstützt noch gesponsert. „Claude"
+und „Claude Code" sind Marken von Anthropic; dies ist ein unabhängiges Community-Projekt
+zur Verwendung mit Claude Code.
+
+Alle anderen Produktnamen, Logos und Marken (Cursor, OpenAI Codex, Google Gemini, GitHub
+Copilot, Flutter, React, Vue und andere) sind Eigentum ihrer jeweiligen Inhaber; ihre
+Verwendung erfolgt hier nominativ und impliziert keine Verbindung oder Billigung. Siehe [CREDITS.md](CREDITS.md).

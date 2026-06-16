@@ -14,6 +14,12 @@ copyright; verbatim third-party text and code are not included.
 are products and trademarks of [Anthropic](https://www.anthropic.com/). This is an
 independent, community project built to be used with Claude Code.
 
+**All other product names, logos, and brands** referenced here — including Cursor, OpenAI Codex,
+Google Gemini, GitHub Copilot, Windsurf, Flutter/Dart, React, Vue, Next.js, Tailwind, Docker,
+Kubernetes, PostgreSQL, MySQL, Redis, Elasticsearch, ClickHouse, Laravel, Django, NestJS,
+Unity, Godot, Unreal, Figma, and others — are the property of their respective owners. Their
+use here is nominative (to say what the tool works with) and implies no affiliation or endorsement.
+
 ## Referenced projects (not bundled — installed separately by the user)
 
 | Project | Use here | License |
@@ -30,6 +36,7 @@ independent, community project built to be used with Claude Code.
 | [OneRedOak/claude-code-workflows](https://github.com/OneRedOak/claude-code-workflows) | referenced as the live design-review workflow | see repo |
 | [Impeccable](https://github.com/pbakaus/impeccable) | referenced as a design-polish toolkit | Apache-2.0 |
 | [alexzhang13/rlm](https://github.com/alexzhang13/rlm) | referenced in the long-context strategy (RLM pattern) | see repo |
+| [ui-skills.com](https://www.ui-skills.com/) (ibelick) | inspiration for the anti-slop checklist and the `web-metadata` skill | see repo |
 
 ## Facts, standards & conventions (used as references, with attribution)
 
