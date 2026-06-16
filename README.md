@@ -5,6 +5,13 @@
 ### **Spin up a new project with one command — stack-aware setup, a proven workflow, and cross-model review. Built for Claude Code, portable to Cursor · Codex · Gemini · Copilot.**
 
 <p align="center">
+  <b>🇬🇧 English</b> •
+  <a href="README-ru.md">🇷🇺 Русский</a> •
+  <a href="README-fr.md">🇫🇷 Français</a> •
+  <a href="README-de.md">🇩🇪 Deutsch</a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/version-0.2.0-blue" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   <img src="https://img.shields.io/badge/built%20for-Claude%20Code-CC785C" alt="Built for Claude Code">
