@@ -13,3 +13,5 @@ jobs:
           node-version: "20"
       - name: Run structure validation
         run: bash scripts/validate.sh
+      - name: Run hook tests
+        run: node tests/hooks.test.mjs

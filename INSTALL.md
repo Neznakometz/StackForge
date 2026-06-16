@@ -47,6 +47,14 @@ npx skills add Neznakometz/StackForge                       # all skills
 npx skills add Neznakometz/StackForge --skill task-loop     # one skill
 ```
 
+There is no `/init` slash command outside Claude Code, so assemble the per-stack rules with
+the bootstrap script (run from the cloned repo):
+
+```bash
+bash scripts/init.sh --list                                    # available packs
+bash scripts/init.sh --stack php-laravel,frontend-vue-nuxt .   # → AGENTS.md (+ CLAUDE.md import)
+```
+
 For the working method and conventions (process, rules, memory), drop **`AGENTS.md`**
 at your repo root — any agent that reads it picks up the StackForge way of working:
 

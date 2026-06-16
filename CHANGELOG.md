@@ -4,7 +4,10 @@ Format — [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versions by
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-06-17
+
 ### Added
+- **Hardening & growth pass:** hook test suite (`tests/hooks.test.mjs`, 27 cases) wired into CI; weekly **knowledge-freshness** workflow (`scripts/check-freshness.mjs` + `.github/workflows/freshness.yml`) that opens an issue when a ready pack is unverified >90 days; **cross-agent bootstrap** `scripts/init.sh` that assembles `AGENTS.md` from packs outside Claude Code; **`/stackforge`** status command; cross-model-review **fallback** to a fresh Claude subagent when no `codex`/`gemini` CLI; opt-out **local telemetry** (`SessionEnd` hook → `.stackforge/metrics.log`, tokens/tool-calls, no network).
 - **bash-guard** — a `PreToolUse(Bash)` hook in core that blocks destructive/network/arbitrary-code commands (rm of `/`~`, `git push --force`, `reset --hard`, `clean`, `sudo`, `chown`, `curl|sh`, arbitrary `npx`/`dlx`) BEFORE permission rules — a second safety layer that expresses exceptions a deny-list can't (allow `rm -rf dist`, block `rm -rf /`). npx allow-listed for StackForge's own tooling (`npx skills`/`shadcn`). 15-case smoke-tested.
 - **Universal install + cross-agent.** `INSTALL.md` (marketplace / local clone / `scripts/install.sh` / `npx skills` / manual + a portability matrix), `scripts/install.sh` (copies skills/agents/commands into `.claude/` without the marketplace — fixes the VS Code plugin friction), and `AGENTS.md` (portable methodology for Cursor/Codex/Gemini/Copilot/Windsurf). Skills are installable cross-agent via `npx skills add Neznakometz/StackForge`.
 - **UI improvements** (from ui-skills.com): new `web-metadata` skill (SEO/Open Graph/Twitter/JSON-LD/canonical — a gap) and an imperative anti-slop MUST/SHOULD/NEVER checklist added to `visual-craft`.

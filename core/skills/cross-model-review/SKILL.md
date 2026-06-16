@@ -19,6 +19,10 @@ The orchestrator calls the external CLI directly via `Bash` (authentication is a
 
 **Gemini (optional, second model):** the `gemini` CLI in the same manner — pass it the diff and the review instruction. Enable it when a second independent point of view is needed (high-risk changes).
 
+## Fallback — review still happens with zero external setup
+
+If NEITHER `codex` nor `gemini` CLI is available (check once: `command -v codex || command -v gemini`), do **not** skip review. Fall back to a **fresh Claude subagent** as the external reviewer — a different model from the implementer where possible (e.g. implementer on sonnet → reviewer on opus), with a clean, narrow context (diff + task text only, no dialog history). This is "fusion-lite": the diversity is by role and model size, not vendor, but the adversarial second-pass is preserved. External CLIs are an upgrade, not a prerequisite — review is never skipped.
+
 ## Arbitration (the key part)
 
 The external model's output is the recommendations of a THIRD-PARTY reviewer, not the truth:

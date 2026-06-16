@@ -1,0 +1,40 @@
+name: knowledge-freshness
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - id: check
+        name: Check pack freshness
+        run: node scripts/check-freshness.mjs --gha
+      - name: Open / update issue for stale packs
+        if: steps.check.outputs.stale != ''
+        uses: actions/github-script@v7
+        env:
+          STALE: ${{ steps.check.outputs.stale }}
+        with:
+          script: |
+            const list = process.env.STALE || "";
+            const body = `The following knowledge packs may be stale (rules last verified > 90 days ago). Run \`/update-knowledge <id>\` to reconcile each against its official docs, then bump \`version\` + \`last_verified\` in \`core/knowledge/registry.json\`.\n\n${list}`;
+            const title = "Knowledge packs need re-verification";
+            const existing = (await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: "open", labels: "freshness",
+            })).data[0];
+            if (existing) {
+              await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body, labels: ["freshness"] });
+            }

@@ -40,7 +40,7 @@
 
 | **Наборы** | **Агенты** | **Скилы** | **Команды** | **Knowledge-паки** | **Хуки** |
 |:--------:|:----------:|:----------:|:------------:|:-------------------:|:---------:|
-| **8** | **12** | **32** | **10** | **13** | **5** |
+| **8** | **12** | **32** | **11** | **13** | **6** |
 
 <sub>Тонкое ядро + 7 доменных наборов · каждый knowledge-пак заземлён на официальные доки с датой верификации</sub>
 
@@ -138,7 +138,7 @@ Claude пишет → **Codex/Gemini** атакует → Claude
 
 **Агенты (7):** implementer · spec-reviewer · code-reviewer · design-reviewer · security-auditor · test-runner · scout
 **Скилы (7):** task-loop · cross-model-review · tdd · contracts · token-economy · memory · prompt-audit
-**Команды:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge
+**Команды:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge · stackforge
 
 ---
 

@@ -40,7 +40,7 @@
 
 | **Sets** | **Agents** | **Skills** | **Commands** | **Knowledge packs** | **Hooks** |
 |:--------:|:----------:|:----------:|:------------:|:-------------------:|:---------:|
-| **8** | **12** | **32** | **10** | **13** | **5** |
+| **8** | **12** | **32** | **11** | **13** | **6** |
 
 <sub>Un core léger + 7 sets de domaine · chaque knowledge pack ancré dans la documentation officielle avec une date de vérification</sub>
 
@@ -138,7 +138,7 @@ Discipline + plugins optionnels `ponytail-safe`,
 
 **Agents (7) :** implementer · spec-reviewer · code-reviewer · design-reviewer · security-auditor · test-runner · scout
 **Skills (7) :** task-loop · cross-model-review · tdd · contracts · token-economy · memory · prompt-audit
-**Commands :** init · next-task · phase-check · checkpoint · add-stack · update-knowledge
+**Commands :** init · next-task · phase-check · checkpoint · add-stack · update-knowledge · stackforge
 
 ---
 

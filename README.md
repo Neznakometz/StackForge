@@ -40,7 +40,7 @@
 
 | **Sets** | **Agents** | **Skills** | **Commands** | **Knowledge packs** | **Hooks** |
 |:--------:|:----------:|:----------:|:------------:|:-------------------:|:---------:|
-| **8** | **12** | **32** | **10** | **13** | **5** |
+| **8** | **12** | **32** | **11** | **13** | **6** |
 
 <sub>A thin core + 7 domain sets · every knowledge pack grounded in official docs with a verification date</sub>
 
@@ -88,8 +88,9 @@ Every new project means installing skills again, writing rules again, wiring up 
 `bash scripts/install.sh /path/to/project` (copies skills/agents/commands into `.claude/`).
 
 **Other agents (Cursor · Codex · Gemini · Copilot · Windsurf):** skills are portable —
-`npx skills add Neznakometz/StackForge`; drop `AGENTS.md` at your repo root for the
-methodology. Full guide + portability matrix: **[INSTALL.md](INSTALL.md)**.
+`npx skills add Neznakometz/StackForge`. For the stack rules, `bash scripts/init.sh --stack <ids>`
+assembles a project `AGENTS.md` from the packs outside Claude Code; drop it where your agent
+reads it. Full guide + portability matrix: **[INSTALL.md](INSTALL.md)**.
 
 ---
 
@@ -138,7 +139,7 @@ Discipline + optional plugins `ponytail-safe`,
 
 **Agents (7):** implementer · spec-reviewer · code-reviewer · design-reviewer · security-auditor · test-runner · scout
 **Skills (7):** task-loop · cross-model-review · tdd · contracts · token-economy · memory · prompt-audit
-**Commands:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge
+**Commands:** init · next-task · phase-check · checkpoint · add-stack · update-knowledge · stackforge
 
 ---
 
