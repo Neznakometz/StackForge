@@ -137,12 +137,13 @@ Discipline + optional plugins `ponytail-safe`,
 
 ## 🛡 Safety
 
-Two layers, on by default:
+Layered, on by default. The enforcement hooks are Claude-Code-native; the **rules port to any agent** via `AGENTS.md`.
 
-- **Safe permissions** — `/init` scaffolds `.claude/settings.json` with a deny-list (no `.env`/secret reads, no force-push, no `rm -rf /`, no `curl`/`wget`) plus an allow-list for the stack's build/test commands.
-- **`bash-guard`** — a `PreToolUse(Bash)` hook that inspects every shell command **before** permission rules run and blocks destructive / network / arbitrary-code ones: `rm` of `/`·`~`, `git push --force`, `reset --hard`, `clean`, `sudo`, `chown`, `curl|sh` pipes, and arbitrary `npx`/`dlx`/`bunx`. It expresses exceptions a deny-list can't — `rm -rf dist` passes, `rm -rf /` is blocked — and `npx` is allow-listed for trusted tooling (`npx skills`/`shadcn`). Exit 2 = blocked (reason surfaced to the model); fail-open on a parse error so the agent never wedges.
+- **Safe permissions** *(Claude Code)* — `/init` scaffolds `.claude/settings.json` with a deny-list (no `.env`/secret reads, no force-push, no `rm -rf /`, no `curl`/`wget`) plus an allow-list for the stack's build/test commands. On Cursor/Codex/Gemini use that agent's own permission system; the same intent lives in `AGENTS.md`.
+- **`bash-guard`** *(Claude Code hook)* — a `PreToolUse(Bash)` hook that inspects every shell command **before** permission rules run and blocks destructive / network / arbitrary-code ones: `rm` of `/`·`~`, `git push --force`, `reset --hard`, `clean`, `sudo`, `chown`, `curl|sh` pipes, arbitrary `npx`/`dlx`/`bunx`. It expresses exceptions a deny-list can't — `rm -rf dist` passes, `rm -rf /` is blocked — and `npx` is allow-listed for trusted tooling (`npx skills`/`shadcn`). Exit 2 = blocked (reason surfaced to the model); fail-open on a parse error so the agent never wedges.
+- **Methodology** *(any agent)* — `AGENTS.md` carries the "never run destructive/network/arbitrary-code commands" rules, so agents without a hook system still follow them. Reviews run a `security-auditor` agent + external cross-model review on every phase diff (any agent with a `codex`/`gemini` CLI).
 
-> Heuristics, not a shell parser — a guard against agent mistakes and crude attacks, not an OS boundary. For hard isolation, rely on Claude Code's sandbox. Reviews also run a `security-auditor` agent + external cross-model review on every phase diff.
+> Heuristics, not a shell parser — a guard against agent mistakes and crude attacks, not an OS boundary. For hard isolation, rely on **your agent's sandbox** (Claude Code, Cursor, etc.).
 
 ---
 
