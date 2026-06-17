@@ -204,6 +204,12 @@ Les serveurs MCP optionnels sont référencés, jamais embarqués — voir [MCP.
 
 ---
 
+## 🔗 Intégrations
+
+- **[Graphify](https://github.com/safishamsi/graphify)** — un **index** de graphe de connaissances optionnel sur un projet StackForge (construit une fois sur Claude, interrogé depuis n'importe quel agent / MCP) pour une navigation long-contexte moins coûteuse en tokens. Recettes d'installation par agent (Claude Code · Cursor · Codex · Antigravity) dans **[`docs/graphify/`](docs/graphify/README.md)**. Référencé, non embarqué.
+
+---
+
 ## 🧩 IDE (VS Code)
 
 Le framework est **agnostique de l'IDE** — à l'intérieur de l'extension VS Code de Claude Code, les plugins/skills/agents/commands/hooks se comportent à l'identique du terminal ; rien n'a besoin de changer. L'extension ajoute l'UX d'éditeur (diffs inline, sidebar, diagnostics LSP). `/init` peut générer `.vscode/extensions.json` pour que Claude obtienne des diagnostics LSP adaptés à votre stack, sans exécutions `analyze` supplémentaires.

@@ -5,7 +5,7 @@ Format — [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versions by
 ## [Unreleased]
 
 ### Added
-- **Graphify integration recipes** (`docs/graphify/` + root pointer): per-agent guides (Claude Code, Cursor, Codex, Antigravity) for using [Graphify](https://github.com/safishamsi/graphify) as an optional knowledge-graph index on top of StackForge — build once on Claude, query from any agent / MCP; common don't-break rules (gitignore `graphify-out/`, INFERRED≠fact, pip-not-curl on Claude Code). Attributed in `CREDITS.md`. No code bundled.
+- **Graphify integration recipes** (`docs/graphify/` + root pointer + an **Integrations** section in the README and all translations): per-agent guides (Claude Code, Cursor, Codex, Antigravity) for using [Graphify](https://github.com/safishamsi/graphify) as an optional knowledge-graph index on top of StackForge — build once on Claude, query from any agent / MCP; common don't-break rules (gitignore `graphify-out/`, INFERRED≠fact, pip-not-curl on Claude Code). Attributed in `CREDITS.md`. No code bundled.
 
 ## [0.2.0] — 2026-06-17
 

@@ -205,6 +205,12 @@ Optional MCP servers are referenced, never bundled — see [MCP.md](MCP.md). Eve
 
 ---
 
+## 🔗 Integrations
+
+- **[Graphify](https://github.com/safishamsi/graphify)** — an optional knowledge-graph **index** over a StackForge project (build once on Claude, query from any agent / MCP) for token-cheaper long-context navigation. Per-agent setup recipes (Claude Code · Cursor · Codex · Antigravity) in **[`docs/graphify/`](docs/graphify/README.md)**. Referenced, not bundled.
+
+---
+
 ## 🧩 IDE (VS Code)
 
 The framework is **IDE-agnostic** — inside the Claude Code VS Code extension, plugins/skills/agents/commands/hooks behave identically to the terminal; nothing needs to change. The extension adds editor UX (inline diffs, sidebar, LSP diagnostics). `/init` can scaffold `.vscode/extensions.json` so Claude gets LSP diagnostics for your stack with no extra `analyze` runs.
