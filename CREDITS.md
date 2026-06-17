@@ -37,6 +37,7 @@ use here is nominative (to say what the tool works with) and implies no affiliat
 | [Impeccable](https://github.com/pbakaus/impeccable) | referenced as a design-polish toolkit | Apache-2.0 |
 | [alexzhang13/rlm](https://github.com/alexzhang13/rlm) | referenced in the long-context strategy (RLM pattern) | see repo |
 | [ui-skills.com](https://www.ui-skills.com/) (ibelick) | inspiration for the anti-slop checklist and the `web-metadata` skill | see repo |
+| [Graphify](https://github.com/safishamsi/graphify) ([@safishamsi](https://github.com/safishamsi)) | referenced as an optional knowledge-graph index; integration recipes in `docs/graphify/` — no code bundled | see repo |
 
 ## Facts, standards & conventions (used as references, with attribution)
 

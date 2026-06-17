@@ -2,11 +2,16 @@
 
 Deferred ideas, not yet started. Ordered roughly by value.
 
-## Owner action (needs you)
+## Launch & promotion (copy ready — execute when you have time)
 
-- **Demo / walkthrough** — record a short GIF or video of `/init` → first task → cross-model review, or add an `examples/` project. Demos convert to installs more than features. *(Owner records the media; an `examples/` walkthrough doc can be authored separately.)*
-- **Cut the release** — `git tag v0.2.0 && git push --tags`, then create a GitHub Release from the `0.2.0` CHANGELOG section. (Files are version-cut; the tag/release needs a push.)
-- **Distribution** — submit to `hesreallyhim/awesome-claude-code`, the Vercel skills registry, and agentskills.io; add repo topics (`claude-code`, `agent-skills`, `cursor`, `codex`, `developer-tools`). Visibility beats more features at this stage.
+All the copy is written; this is execution, not authoring.
+
+- **Demo GIF** — record per `DEMO-SCRIPT.md` (60s shot list + asciinema/agg settings), then embed in the README (all 4 languages). Highest-leverage: without it traffic bounces.
+- **Distribution (passive, do once)** — PR to `hesreallyhim/awesome-claude-code`; submit to agentskills.io, the Vercel skills ecosystem, Smithery. Entry text in `PROMO-KIT.md`. Set repo About + topics.
+- **Launch wave (one 1–2 day push)** — Show HN · Reddit (r/ClaudeAI) · X thread · LinkedIn — all texts ready in `PROMO-KIT.md`.
+- **Story article** — dev.to / Hashnode post (full draft in `PROMO-KIT.md`), a few days after the wave.
+
+> `PROMO-KIT.md` and `DEMO-SCRIPT.md` are working docs — delete or gitignore after launch if you don't want them in the repo.
 
 ## Product depth
 
