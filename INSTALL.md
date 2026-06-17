@@ -47,6 +47,12 @@ npx skills add Neznakometz/StackForge                       # all skills
 npx skills add Neznakometz/StackForge --skill task-loop     # one skill
 ```
 
+> **Vet before you install — any skill, ours included.** A skill runs with your agent's
+> trust. Screen it first with [SkillSpector](https://github.com/NVIDIA/skillspector)
+> (NVIDIA, Apache-2.0): `skillspector scan https://github.com/Neznakometz/StackForge` flags
+> prompt injection, secret exfiltration, supply-chain and MCP-poisoning patterns before
+> anything lands. We run it on our own skills in CI, but verifying yourself is the safe habit.
+
 There is no `/init` slash command outside Claude Code, so assemble the per-stack rules with
 the bootstrap script (run from the cloned repo):
 

@@ -38,6 +38,7 @@ use here is nominative (to say what the tool works with) and implies no affiliat
 | [alexzhang13/rlm](https://github.com/alexzhang13/rlm) | referenced in the long-context strategy (RLM pattern) | see repo |
 | [ui-skills.com](https://www.ui-skills.com/) (ibelick) | inspiration for the anti-slop checklist and the `web-metadata` skill | see repo |
 | [Graphify](https://github.com/safishamsi/graphify) ([@safishamsi](https://github.com/safishamsi)) | referenced as an optional knowledge-graph index; integration recipes in `docs/graphify/` — no code bundled | see repo |
+| [SkillSpector](https://github.com/NVIDIA/skillspector) (NVIDIA) | referenced as the recommended install-time skill scanner (Safety/INSTALL) + run on our own skills in CI (`skill-scan.yml`); its vulnerability taxonomy is **paraphrased** as a checklist in the `prompt-audit` skill — no code bundled | Apache-2.0 |
 
 ## Facts, standards & conventions (used as references, with attribution)
 

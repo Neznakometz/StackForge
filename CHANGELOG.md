@@ -5,6 +5,7 @@ Format — [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versions by
 ## [Unreleased]
 
 ### Added
+- **SkillSpector supply-chain integration** ([NVIDIA/skillspector](https://github.com/NVIDIA/skillspector), Apache-2.0, referenced not bundled): recommended as an **install-time** skill scanner in the README Safety section (+ RU/FR/DE) and `INSTALL.md` — complements runtime `bash-guard`; a non-blocking **`skill-scan.yml`** CI workflow that statically scans StackForge's own skills and uploads SARIF to code scanning; its 16-category vulnerability taxonomy **paraphrased** into a "skill / agent safety screen" in the `prompt-audit` skill. Attributed in `CREDITS.md`.
 - **Graphify integration recipes** (`docs/graphify/` + root pointer + an **Integrations** section in the README and all translations): per-agent guides (Claude Code, Cursor, Codex, Antigravity) for using [Graphify](https://github.com/safishamsi/graphify) as an optional knowledge-graph index on top of StackForge — build once on Claude, query from any agent / MCP; common don't-break rules (gitignore `graphify-out/`, INFERRED≠fact, pip-not-curl on Claude Code). Attributed in `CREDITS.md`. No code bundled.
 
 ## [0.2.0] — 2026-06-17

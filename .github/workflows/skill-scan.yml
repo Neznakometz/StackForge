@@ -1,0 +1,52 @@
+name: skill-scan
+# Advisory supply-chain scan of StackForge's OWN skills with NVIDIA SkillSpector
+# (https://github.com/NVIDIA/skillspector, Apache-2.0). Static-only (--no-llm), no keys.
+# Non-blocking: a trust signal + Security-tab findings, never a merge gate.
+on:
+  push:
+    paths: ["**/skills/**", ".github/workflows/skill-scan.yml"]
+  pull_request:
+    paths: ["**/skills/**"]
+  schedule:
+    - cron: "0 7 * * 1"   # weekly, alongside the freshness check
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write   # upload SARIF to code scanning
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SkillSpector
+        id: install
+        continue-on-error: true   # no PyPI release yet — tolerate install drift
+        run: pip install "git+https://github.com/NVIDIA/skillspector.git"
+
+      - name: Scan skill directories (static)
+        if: steps.install.outcome == 'success'
+        continue-on-error: true   # advisory, never blocks
+        run: |
+          mkdir -p skillspector-sarif
+          echo "## SkillSpector (static) — StackForge skills" >> "$GITHUB_STEP_SUMMARY"
+          # one SARIF per */skills root so findings keep a clean source path
+          for dir in $(find . -type d -name skills -not -path '*/node_modules/*'); do
+            name=$(echo "$dir" | sed 's#^\./##; s#/#_#g')
+            skillspector scan "$dir" --no-llm --format sarif \
+              --output "skillspector-sarif/${name}.sarif" || true
+            skillspector scan "$dir" --no-llm --format markdown >> "$GITHUB_STEP_SUMMARY" || true
+          done
+
+      - name: Upload SARIF to code scanning
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: skillspector-sarif
+          category: skillspector
